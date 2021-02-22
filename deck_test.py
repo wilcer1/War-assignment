@@ -9,7 +9,11 @@ import card
 
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 class TestDeckClass(unittest.TestCase):
+=======
+class TestGameClass(unittest.TestCase):
+>>>>>>> Stashed changes
 =======
 class TestGameClass(unittest.TestCase):
 >>>>>>> Stashed changes
@@ -25,6 +29,7 @@ class TestGameClass(unittest.TestCase):
         """Check if the build deck method creates a correct deck."""
         self.deck = deck.Deck()
         suits = ["Clubs", "Spades", "Hearts", "Diamonds"]
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
         self.deck.build_deck()
         res_list = self.deck.deck
@@ -56,6 +61,8 @@ class TestGameClass(unittest.TestCase):
 
         self.assertLess(duplicates, 10)
 =======
+=======
+>>>>>>> Stashed changes
         res = self.deck.build_deck
         exp = []
         for s in suits:
@@ -63,4 +70,7 @@ class TestGameClass(unittest.TestCase):
                 exp.append(card.Card(s, v))
 
         self.assertEqual(res, exp)
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
