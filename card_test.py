@@ -3,8 +3,8 @@
 
 """Unit testing."""
 
-import card
 import unittest
+import card
 
 
 class TestCardClass(unittest.TestCase):

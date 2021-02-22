@@ -1,28 +1,30 @@
 """Unit testing."""
-
-import player
 import unittest
-
-"""Test Player Class."""
+import player
 
 
 class TestPlayerClass(unittest.TestCase):
     """Test Player Class."""
 
-    pass
-
-    def SetUp(self):
+    def setUp(self):
         """Create a player object."""
         self.player = player.Player("Lucas")
-        print(self.player)
 
-    def TearDown(self):
+    def tearDown(self):
         """Delete player object."""
-        pass
 
     def test_init_default_object(self):
         """Test instansiation of player object."""
-        self.assertEqual(self.player.name == "Lucas")
+        res = self.player.name
+        exp = "Lucas"
+        self.assertEqual(res, exp)
+
+    def test_change_name(self):
+        """Test player name change."""
+        self.player.name = "Wille"
+        res = self.player.name
+        exp = "Wille"
+        self.assertEqual(res, exp)
 
 
 if __name__ == "__main__":
