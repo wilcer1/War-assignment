@@ -3,28 +3,15 @@
 
 """Card class."""
 
-import random
-
 
 class Card():
     """Card class."""
 
-    def __init__(self):
+    def __init__(self, suit, value):
         """Init the object and set attributes."""
-        random.seed()
+        self.suit = suit
+        self.value = value
 
-    def create_card(self):
-        """Assign the attributes that the card should contain."""
-        self.suit = random.randint(1, 4)
-        self.value = random.randint(1, 14)
-
-    def suit_string(self):
-        """Return suit as string depending on value of int attribute suit."""
-        if self.suit == 1:
-            return "Clubs"
-        elif self.suit == 2:
-            return "Hearts"
-        elif self.suit == 3:
-            return "Diamonds"
-        else:
-            return "Spades"
+    def show(self):
+        """Return the card as String."""
+        return f"{self.value} of {self.suit}"
