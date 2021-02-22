@@ -4,3 +4,4 @@ start with random suit and number
 identify what type of card it is
 store suit and number
 return suit and number
+test
