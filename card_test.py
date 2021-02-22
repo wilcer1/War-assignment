@@ -29,3 +29,7 @@ class TestCardClass(unittest.TestCase):
         exp = "2 of Diamonds"
         res = self.card.show()
         self.assertEqual(exp, res)
+
+
+if __name__ == "__main__":
+    unittest.main()
