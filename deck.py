@@ -4,13 +4,17 @@
 """Import cards to use in deck."""
 
 import card
+<<<<<<< Updated upstream
 import random
+=======
+>>>>>>> Stashed changes
 
 
 class Deck:
     """Deck class."""
 
     def __init__(self):
+<<<<<<< Updated upstream
         """Create empty list to store cards in."""
         self.deck = []
         self.suits = ["Clubs", "Spades", "Hearts", "Diamonds"]
@@ -26,3 +30,7 @@ class Deck:
         for c in range(len(self.deck) - 1, 0, -1):
             i = random.randint(0, c)
             self.deck[c], self.deck[i] = self.deck[i], self.deck[c]
+=======
+        """Create empty list to store cards in"""
+        self.cards = []
+>>>>>>> Stashed changes
