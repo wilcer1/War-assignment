@@ -8,7 +8,9 @@ class TestIntelligenceClass(unittest.TestCase):
     """Test intelligence class."""
 
     def setUp(self):
-        print("Hello")
+      pass
 
     def test_win(self):
-        self.assertEqual("You are pro!", "You are pro!")
+
+        
+        self.assertEqual(intelligence.pro , "You are pro!")
