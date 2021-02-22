@@ -21,8 +21,10 @@ class Deck:
             for v in range(2, 14):
                 self.deck.append(card.Card(s, v))
 
+    def get_deck(self):
+        """Return deck attribute."""
+        return self.deck
+
     def shuffle_deck(self):
-        """Switch positions of the iterator index and the random number index."""
-        for c in range(len(self.deck) - 1, 0, -1):
-            i = random.randint(0, c)
-            self.deck[c], self.deck[i] = self.deck[i], self.deck[c]
+        """Switch positions of the iterator index and the random num index."""
+        random.shuffle(self.deck)

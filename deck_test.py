@@ -8,15 +8,7 @@ import deck
 import card
 
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-class TestDeckClass(unittest.TestCase):
-=======
 class TestGameClass(unittest.TestCase):
->>>>>>> Stashed changes
-=======
-class TestGameClass(unittest.TestCase):
->>>>>>> Stashed changes
     """Test deck class."""
 
     def test_init_default_object(self):
@@ -29,8 +21,7 @@ class TestGameClass(unittest.TestCase):
         """Check if the build deck method creates a correct deck."""
         self.deck = deck.Deck()
         suits = ["Clubs", "Spades", "Hearts", "Diamonds"]
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+
         self.deck.build_deck()
         res_list = self.deck.deck
         exp_list = []
@@ -43,34 +34,33 @@ class TestGameClass(unittest.TestCase):
             self.assertEqual(i.show(), res_list[index].show())
             index += 1
 
+    def test_get_deck(self):
+        """Return deck and compare to attribute."""
+        self.deck = deck.Deck()
+        self.deck.build_deck()
+
+        res = self.deck.get_deck()
+        exp = self.deck.deck
+        index = 0
+        for i in exp:
+            self.assertEqual(i.show(), res[index].show())
+            index += 1
+
     def test_shuffle_deck(self):
         """Test the shuffle method to see if it really shuffles."""
         self.deck = deck.Deck()
         self.deck.build_deck()
 
-        og_deck = self.deck.deck
-
+        sorted_deck = []
+        suits = ["Clubs", "Spades", "Hearts", "Diamonds"]
+        for s in suits:
+            for v in range(2, 14):
+                sorted_deck.append(card.Card(s, v))
         self.deck.shuffle_deck()
-        index = 0
-        duplicates = 0
 
-        for i in self.deck.deck:
-            if i.show() == og_deck[index].show():
+        duplicates = 0
+        for i in range(len(sorted_deck)):
+            if sorted_deck[i].show() == self.deck.get_deck()[i].show():
                 duplicates += 1
-            index += 1
 
         self.assertLess(duplicates, 10)
-=======
-=======
->>>>>>> Stashed changes
-        res = self.deck.build_deck
-        exp = []
-        for s in suits:
-            for v in range(1, 14):
-                exp.append(card.Card(s, v))
-
-        self.assertEqual(res, exp)
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
