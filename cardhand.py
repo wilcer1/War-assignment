@@ -8,6 +8,5 @@ class Cardhand:
     """cardhand class."""
 
     def __init__(self):
-        """Constructor for cardhandclass."""
+        """Initialize class."""
         self.hand = []
-
