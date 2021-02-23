@@ -6,6 +6,7 @@
 import unittest
 
 import cardhand
+import deck
 
 
 class TestDiceClass(unittest.TestCase):
@@ -27,3 +28,20 @@ class TestDiceClass(unittest.TestCase):
         exp = []
         res = self.cardhand.hand
         self.assertListEqual(exp, res)
+
+    def test_cards_remaining(self):
+        """Test if method returns right int."""
+        res = self.cardhand.cards_remaining()
+        exp = len(self.cardhand.hand)
+        self.assertEqual(exp, res)
+
+    def test_recieve_cards(self):
+        """Test if method adds the cards recieved to hand."""
+        this_deck = deck.Deck()
+        this_deck.build_deck()
+        this_deck.shuffle_deck()
+        tot_cards = this_deck.deal_deck()
+        recieved_cards = tot_cards[0]
+        self.cardhand.recieve_cards(recieved_cards)
+        res = self.cardhand.cards_remaining()
+        self.assertEqual(26, res)
