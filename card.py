@@ -10,7 +10,14 @@ class Card():
     def __init__(self, suit, value):
         """Init the object and set attributes."""
         self.suit = suit
-        self.value = value
+        if value == 11:
+            self.value = "Jack"
+        elif value == 12:
+            self.value = "Queen"
+        elif value == 13:
+            self.value = "King"
+        elif value == 14:
+            self.value = "Ace"
 
     def show(self):
         """Return the card as String."""

@@ -45,3 +45,15 @@ class TestDiceClass(unittest.TestCase):
         self.cardhand.recieve_cards(recieved_cards)
         res = self.cardhand.cards_remaining()
         self.assertEqual(26, res)
+
+    def test_war(self):
+        """Test if war method works properly."""
+        this_deck = deck.Deck()
+        this_deck.build_deck()
+        this_deck.shuffle_deck()
+        tot_cards = this_deck.deal_deck()
+        recieved_cards = tot_cards[0]
+        self.cardhand.recieve_cards(recieved_cards)
+
+        res = self.cardhand.war()
+
