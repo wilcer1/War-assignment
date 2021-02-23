@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import random
-
 """Class for cards in hand."""
+
+import random
 
 
 class Cardhand:

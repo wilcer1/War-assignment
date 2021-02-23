@@ -24,6 +24,26 @@ class TestCardClass(unittest.TestCase):
         exp = card.Card
         self.assertIsInstance(res, exp)
 
+        self.card = card.Card("Diamonds", 11)
+        res = self.card.value
+        exp = "Jack"
+        self.assertEqual(res, exp)
+
+        self.card = card.Card("Diamonds", 12)
+        res = self.card.value
+        exp = "Queen"
+        self.assertEqual(res, exp)
+
+        self.card = card.Card("Diamonds", 13)
+        res = self.card.value
+        exp = "King"
+        self.assertEqual(res, exp)
+
+        self.card = card.Card("Diamonds", 14)
+        res = self.card.value
+        exp = "Ace"
+        self.assertEqual(res, exp)
+
     def test_show(self):
         """Check if right string is returned from show method."""
         exp = "2 of Diamonds"
@@ -34,4 +54,3 @@ class TestCardClass(unittest.TestCase):
         exp = "Ace of Diamonds"
         res = self.card.show()
         self.assertEqual(exp, res)
-

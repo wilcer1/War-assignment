@@ -45,7 +45,7 @@ class TestDiceClass(unittest.TestCase):
         recieved_cards = tot_cards[0]
         self.cardhand.recieve_cards(recieved_cards)
         res = self.cardhand.cards_remaining()
-        self.assertEqual(26, res)
+        self.assertEqual(len(recieved_cards), res)
 
     def test_war(self):
         """Test if war method works properly."""
@@ -58,9 +58,9 @@ class TestDiceClass(unittest.TestCase):
 
         tot_res = self.cardhand.war()
         res = tot_res[0]
+        self.assertIsInstance(res, list)
         self.assertEqual(len(res), 3)
         self.assertIsInstance(res[0], card.Card)
 
         res = tot_res[1]
         self.assertIsInstance(res, str)
-
