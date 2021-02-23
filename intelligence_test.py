@@ -10,7 +10,17 @@ class TestIntelligenceClass(unittest.TestCase):
     def setUp(self):
       pass
 
-    def test_win(self):
+    def tearDown(self):
+      pass
 
-        
-        self.assertEqual(intelligence.pro , "You are pro!")
+    def test_win(self):
+      self.assertEqual(intelligence.win, "You are pro!")
+
+    def test_lose(self):
+      self.assertEqual(intelligence.lose, "Better luck next time")
+
+    def test_start(self):
+      self.assertEqual(intelligence.start, "Good luck have fun!")
+
+    def test_war(self):
+      self.assertEqual(intelligence.war, "This is a war!")
