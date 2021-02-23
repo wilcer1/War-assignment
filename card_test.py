@@ -31,10 +31,7 @@ class TestCardClass(unittest.TestCase):
         self.assertEqual(exp, res)
 
         self.card = card.Card("Diamonds", 14)
-        exp = "Ace of diamonds"
+        exp = "Ace of Diamonds"
         res = self.card.show()
         self.assertEqual(exp, res)
 
-
-if __name__ == "__main__":
-    unittest.main()

@@ -18,6 +18,8 @@ class Card():
             self.value = "King"
         elif value == 14:
             self.value = "Ace"
+        else:
+            self.value = value
 
     def show(self):
         """Return the card as String."""

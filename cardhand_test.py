@@ -7,6 +7,7 @@ import unittest
 
 import cardhand
 import deck
+import card
 
 
 class TestDiceClass(unittest.TestCase):
@@ -55,5 +56,11 @@ class TestDiceClass(unittest.TestCase):
         recieved_cards = tot_cards[0]
         self.cardhand.recieve_cards(recieved_cards)
 
-        res = self.cardhand.war()
+        tot_res = self.cardhand.war()
+        res = tot_res[0]
+        self.assertEqual(len(res), 3)
+        self.assertIsInstance(res[0], card.Card)
+
+        res = tot_res[1]
+        self.assertIsInstance(res, str)
 
