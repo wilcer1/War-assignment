@@ -28,4 +28,3 @@ class Deck:
     def shuffle_deck(self):
         """Switch positions of the iterator index and the random num index."""
         random.shuffle(self.deck)
-
