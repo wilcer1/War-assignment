@@ -26,13 +26,17 @@ class TestGameClass(unittest.TestCase):
         res_list = self.deck.deck
         exp_list = []
         for s in suits:
-            for v in range(2, 14):
+            for v in range(2, 15):
                 exp_list.append(card.Card(s, v))
         index = 0
 
         for i in exp_list:
             self.assertEqual(i.show(), res_list[index].show())
             index += 1
+
+        exp = 52
+        res = len(res_list)
+        self.assertEqual(res, exp)
 
     def test_get_deck(self):
         """Return deck and compare to attribute."""
@@ -54,7 +58,7 @@ class TestGameClass(unittest.TestCase):
         sorted_deck = []
         suits = ["Clubs", "Spades", "Hearts", "Diamonds"]
         for s in suits:
-            for v in range(2, 14):
+            for v in range(2, 15):
                 sorted_deck.append(card.Card(s, v))
         self.deck.shuffle_deck()
 
@@ -66,5 +70,11 @@ class TestGameClass(unittest.TestCase):
         self.assertLess(duplicates, 10)
 
     def test_deal_deck(self):
-        """Test so the deck deals correctly between players"""
-        
+        """Test so the deck deals correctly between players."""
+        self.deck = deck.Deck()
+        self.deck.build_deck()
+        self.deck.shuffle_deck()
+        res = self.deck.deal_deck()
+        player1 = res[0]
+        player2 = res[1]
+        self.assertEqual(len(player1), len(player2))
