@@ -8,7 +8,7 @@ import unittest
 
 
 class TestShellClass(unittest.TestCase):
-    """Testing cardhand class."""
+    """Testing shell class."""
 
     def setUp(self):
         """Instantiate shell in setUp to keep code D.R.Y."""
