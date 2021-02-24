@@ -1,6 +1,7 @@
 """Unit testing."""
 import unittest
-import player 
+import player
+import cardhand
 
 
 class TestPlayerClass(unittest.TestCase):
@@ -28,8 +29,11 @@ class TestPlayerClass(unittest.TestCase):
 
     def test_card_hand(self):
         """Test that card_hand is empty."""
-        res = self.player.card_hand
-        exp = []
+        exp = cardhand.Cardhand
+        self.assertIsInstance(self.player.cardhand, exp)
+
+        res = self.player.cardhand.cards_remaining()
+        exp = 0
         self.assertEqual(res, exp)
 
 

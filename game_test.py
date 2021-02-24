@@ -4,14 +4,17 @@
 """Unittesting game."""
 
 import unittest
+import mock
 import game
-import cardhand
-import deck
 
 
 class TestGameClass(unittest.TestCase):
-    """Testing game class."""
+    """Testing game class, use mock on objects needed from other modules."""
 
+    @mock.patch("card.Card")
+    @mock.patch("player.Player")
+    @mock.patch("deck.Deck")
+    @mock.patch("cardhand.Cardhand")
     def setUp(self):
         """Instantiate game in setUp to keep code D.R.Y."""
         self.game = game.Game()
@@ -27,10 +30,13 @@ class TestGameClass(unittest.TestCase):
 
         exp = deck.Deck
         self.assertIsInstance(self.game.deck, exp)
-
-    def test_start(self):
+    
+    def test_start(self, mock):
         """Test start method."""
-        self.game.Start()
+        self.game.start()
         
+        self.assertIsInstance(self.game.deck.deck[0], )
 
+        res = len(self.game.deck.deck)
+        self.assertEqual(res, 52)
 
