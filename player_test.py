@@ -26,6 +26,12 @@ class TestPlayerClass(unittest.TestCase):
         exp = "Wille"
         self.assertEqual(res, exp)
 
+    def test_card_hand(self):
+        """Test that card_hand is empty."""
+        res = self.player.card_hand
+        exp = []
+        self.assertEqual(res, exp)
+
 
 if __name__ == "__main__":
     unittest.main()
