@@ -1,0 +1,4 @@
+Class should be able to:
+store the cards given to the player
+Draw card
+handle war?
