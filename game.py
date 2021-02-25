@@ -52,11 +52,11 @@ class Game():
         if self.player1 is None and self.player2 is None:
             return "Create player(s) and start game first"
         else:
-            p1_int = random.randint(\
-                0, self.player1.cardhand.cards_remaining() - 1)
+            p1_int =\
+                random.randint(0, self.player1.cardhand.cards_remaining())
             p1_card = self.player1.cardhand.hand.pop(p1_int)
-            p2_int = random.randint(\
-                0, self.player2.cardhand.cards_remaining() - 1)
+            p2_int =\
+                random.randint(0, self.player2.cardhand.cards_remaining())
             p2_card = self.player2.cardhand.hand.pop(p2_int)
             return p1_card, p2_card
 
@@ -82,8 +82,14 @@ class Game():
             self.player2.cardhand.recieve_cards(winner_cards)
             print(f"{self.player2.name} wins!\n{card2.show()} beats\
                  {card1.show()}")
-        # else:
-        #     winner_cards.append(self.player1.cardhand.war()[0])
-        #     face_up = self.player1.cardhand.war()[1]
-        #     winner_cards.append(self.player2.cardhand.war()[0])
-        #     face_up = self.player2.cardhand.war()[1]
+        else:
+            winner_cards.append(self.player1.cardhand.war()[0])
+            p1_face_up = self.player1.cardhand.war()[1]
+            winner_cards.append(self.player2.cardhand.war()[0])
+            p2_face_up = self.player2.cardhand.war()[1]
+            winner_cards.append(p1_face_up)
+            winner_cards.append(p2_face_up)
+            if p1_face_up > p2_face_up:
+                self.player1.cardhand.recieve_cards(winner_cards)
+                print(f"")
+                
