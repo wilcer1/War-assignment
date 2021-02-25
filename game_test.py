@@ -80,4 +80,30 @@ class TestGameClass(unittest.TestCase):
 
         self.assertIsInstance(p1_card, card.Card)
         self.assertIsInstance(p2_card, card.Card)
+
+    def test_round_winner(self):
+        """Test round_winner method."""
+        self.game.set_player(1, "Wille")
+        self.game.start()
+        p1, p2 = self.game.get_players()
+        p1_card = card.Card("Diamonds", 5)
+        p2_card = card.Card("Diamonds", 4)
+        self.game.round_winner(p1_card, p2_card)
+        self.assertNotEqual(p1.cardhand.cards_remaining(),
+                            p2.cardhand.cards_remaining())
+
+        p1_card = card.Card("Diamonds", 11)
+        p2_card = card.Card("Diamonds", 13)
+        self.game.round_winner(p1_card, p2_card)
+        self.assertEqual(p1.cardhand.cards_remaining(),
+                         p2.cardhand.cards_remaining())
         
+        p1.cardhand.hand.clear()
+        p2.cardhand.hand.clear()
+        self.game.start()
+        self.game.draw()
+        p2_card = card.Card("Clubs", 5)
+        self.game.round_winner(p1_card, p2_card)
+        exp = p1.cardhand.cards_remaining > p2.cardhand.cards_remaining\
+            or p2.cardhand.cards_remaining > p1.cardhand.cards_remaining
+        self.assertTrue(exp)

@@ -52,10 +52,38 @@ class Game():
         if self.player1 is None and self.player2 is None:
             return "Create player(s) and start game first"
         else:
-            p1_int = random.randint(
+            p1_int = random.randint(\
                 0, self.player1.cardhand.cards_remaining() - 1)
             p1_card = self.player1.cardhand.hand.pop(p1_int)
-            p2_int = random.randint(
+            p2_int = random.randint(\
                 0, self.player2.cardhand.cards_remaining() - 1)
             p2_card = self.player2.cardhand.hand.pop(p2_int)
             return p1_card, p2_card
+
+    def round_winner(self, card1, card2):
+        """Give cards to winner, if equal call war, return string."""
+        winner_cards = []
+        winner_cards.append(card1)
+        winner_cards.append(card2)
+        if isinstance(card1.value, tuple):
+            card1_value = card1.value[1]
+        else:
+            card1_value = card1.value
+        if isinstance(card2.value, tuple):
+            card2_value = card2.value[1]
+        else:
+            card2_value = card2.value
+
+        if card1_value > card2_value:
+            self.player1.cardhand.recieve_cards(winner_cards)
+            print(f"{self.player1.name} wins!\n{card1.show()} beats\
+                 {card2.show()}")
+        elif card1_value < card2_value:
+            self.player2.cardhand.recieve_cards(winner_cards)
+            print(f"{self.player2.name} wins!\n{card2.show()} beats\
+                 {card1.show()}")
+        # else:
+        #     winner_cards.append(self.player1.cardhand.war()[0])
+        #     face_up = self.player1.cardhand.war()[1]
+        #     winner_cards.append(self.player2.cardhand.war()[0])
+        #     face_up = self.player2.cardhand.war()[1]
