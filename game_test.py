@@ -4,17 +4,14 @@
 """Unittesting game."""
 
 import unittest
-import mock
 import game
+import player
+import card
 
 
 class TestGameClass(unittest.TestCase):
-    """Testing game class, use mock on objects needed from other modules."""
+    """Testing game class."""
 
-    @mock.patch("card.Card")
-    @mock.patch("player.Player")
-    @mock.patch("deck.Deck")
-    @mock.patch("cardhand.Cardhand")
     def setUp(self):
         """Instantiate game in setUp to keep code D.R.Y."""
         self.game = game.Game()
@@ -28,15 +25,58 @@ class TestGameClass(unittest.TestCase):
         exp = game.Game
         self.assertIsInstance(self.game, exp)
 
-        exp = deck.Deck
-        self.assertIsInstance(self.game.deck, exp)
-    
-    def test_start(self, mock):
-        """Test start method."""
+    def test_set_get_players(self):
+        """Test the setters and getters."""
+        with self.assertRaises(ValueError):
+            self.game.set_player(3, "Wille")
+
+        with self.assertRaises(TypeError):
+            self.game.set_player(1, 5)
+
+        res = self.game.get_players()
+        exp = (None, None)
+        self.assertEqual(res, exp)
+
+        self.game.set_player(1, "Wille")
         self.game.start()
-        
-        self.assertIsInstance(self.game.deck.deck[0], )
+        res = self.game.get_players()
+        p1 = res[0]
+        p2 = res[1]
+        self.assertIsInstance(p1, player.Player)
+        self.assertIsInstance(p2, player.Player)
 
-        res = len(self.game.deck.deck)
-        self.assertEqual(res, 52)
+        res = p1.name
+        exp = "Wille"
+        self.assertEqual(res, exp)
 
+    def test_start(self):
+        """Test start method."""
+        res = self.game.start()
+        exp = "Create player(s) first"
+        self.assertEqual(exp, res)
+
+        self.game.set_player(1, "Wille")
+        self.game.start()
+        p1, p2 = self.game.get_players()
+        res = p1.cardhand.cards_remaining()
+        self.assertEqual(res, 26)
+        res = p2.cardhand.cards_remaining()
+        self.assertEqual(res, 26)
+
+    def test_draw(self):
+        """Test continue method."""
+        res = self.game.draw()
+        exp = "Create player(s) and start game first"
+        self.assertEqual(res, exp)
+
+        self.game.set_player(1, "Wille")
+        self.game.start()
+        p1, p2 = self.game.get_players()
+        p1_card, p2_card = self.game.draw()
+        res1 = p1.cardhand.cards_remaining()
+        res2 = p2.cardhand.cards_remaining()
+        self.assertEqual(res1, 25)
+        self.assertEqual(res2, 25)
+
+        self.assertIsInstance(p1_card, card.Card)
+        self.assertIsInstance(p2_card, card.Card)

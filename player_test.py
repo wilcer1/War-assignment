@@ -35,7 +35,3 @@ class TestPlayerClass(unittest.TestCase):
         res = self.player.cardhand.cards_remaining()
         exp = 0
         self.assertEqual(res, exp)
-
-
-if __name__ == "__main__":
-    unittest.main()
