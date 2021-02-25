@@ -52,8 +52,10 @@ class Game():
         if self.player1 is None and self.player2 is None:
             return "Create player(s) and start game first"
         else:
-            p1_int = random.randint(0, self.player1.cardhand.cards_remaining())
+            p1_int = random.randint(
+                0, self.player1.cardhand.cards_remaining() - 1)
             p1_card = self.player1.cardhand.hand.pop(p1_int)
-            p2_int = random.randint(0, self.player2.cardhand.cards_remaining())
+            p2_int = random.randint(
+                0, self.player2.cardhand.cards_remaining() - 1)
             p2_card = self.player2.cardhand.hand.pop(p2_int)
             return p1_card, p2_card

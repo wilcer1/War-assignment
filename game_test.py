@@ -80,3 +80,4 @@ class TestGameClass(unittest.TestCase):
 
         self.assertIsInstance(p1_card, card.Card)
         self.assertIsInstance(p2_card, card.Card)
+        
