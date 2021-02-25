@@ -2,6 +2,7 @@
 import unittest
 import os
 import highscore
+import player
 
 
 class TestHighscoreClass(unittest.TestCase):
@@ -9,8 +10,6 @@ class TestHighscoreClass(unittest.TestCase):
 
     def setUp(self):
         """Create test_highscore.txt file."""
-        self.highscore_file = open("test_highscore.txt", "w+")
-
         self.h = highscore.Highscore()
 
         self.unsorted_test_list = []
@@ -20,25 +19,26 @@ class TestHighscoreClass(unittest.TestCase):
         self.unsorted_test_list.append((3, "Robin"))
 
         self.test_list = []
-        self.test_list.append((4, "Batman"))
-        self.test_list.append((3, "Robin"))
-        self.test_list.append((2, "Joker"))
         self.test_list.append((1, "Bane"))
+        self.test_list.append((2, "Joker"))
+        self.test_list.append((3, "Robin"))
+        self.test_list.append((4, "Batman"))
 
-    def tearDown(self):
-        """Close and remove test file."""
-        self.highscore_file.close()
-        os.remove("test_highscore.txt")
+    @classmethod
+    def tearDownClass(cls):
+        """Remove test file."""
+        os.remove("test_file.txt")
 
     def test_create_highscore_file(self):
         """Tests if highscore file is created."""
         exp = "test123\n"
-        self.highscore_file.write(exp)
-        self.highscore_file.seek(0)
-        res = self.highscore_file.read()
-        self.assertEqual(res, exp)
+        with open("test_file.txt", "w+") as self.highscore_file:
+            self.highscore_file.write(exp)
+            self.highscore_file.seek(0)
+            res = self.highscore_file.read()
+            self.assertEqual(res, exp)
 
-    def test_sort_highscore_file(self):
+    def test_sort_highscore(self):
         """Test if sort method works as intended."""
         exp = self.test_list
         res = self.h.sort_highscore(self.unsorted_test_list)
@@ -60,14 +60,23 @@ class TestHighscoreClass(unittest.TestCase):
 
         self.assertListEqual(res, exp)
 
+    def test_read_highscore(self):
+        """Test reading highscore and adding to list"""
+
+    def test_add_highscore(self):
+        """Test add player highscore to file."""
+        # Remove added player from test_list to not fuck up rest of the test
+        # if run out of order, .
+        test_player = player.Player("Gimli")
+        res = self.h.add_highscore(13, test_player.name, self.test_list)
+        exp = self.test_list
+        exp.append((13, "Gimli"))
+        self.assertEqual(exp, res)
+
     def test_show_highscore(self):
         """Test the output of show_highscore."""
         # exp = "print directly from test_list?"
         # res = self.h.show_highscore
-
-    def test_add_highscore(self):
-        """Test add highscore to file."""
-        # pass
 
 
 if __name__ == "__main__":

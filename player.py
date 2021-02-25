@@ -4,7 +4,7 @@
 class Player:
     """Player Class."""
 
-    card_hand = []
+    # card_hand = []
 
     def __init__(self, name):
         """Init the object and set attributes."""
