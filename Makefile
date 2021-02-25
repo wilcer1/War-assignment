@@ -33,7 +33,7 @@ unittest:
      $(PYTHON) -m unittest discover . "_test.py"
 
 coverage:
-    coverage run -m unittest discover . "*_test.py"
+    coverage run -m unittest discover . "intelligence_test.py"
     coverage html
     coverage report -m
 
