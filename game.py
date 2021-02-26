@@ -53,10 +53,10 @@ class Game():
             return "Create player(s) and start game first"
         else:
             p1_int =\
-                random.randint(0, self.player1.cardhand.cards_remaining())
+                random.randint(0, (self.player1.cardhand.cards_remaining() - 1))
             p1_card = self.player1.cardhand.hand.pop(p1_int)
             p2_int =\
-                random.randint(0, self.player2.cardhand.cards_remaining())
+                random.randint(0, (self.player2.cardhand.cards_remaining() - 1))
             p2_card = self.player2.cardhand.hand.pop(p2_int)
             return p1_card, p2_card
 
