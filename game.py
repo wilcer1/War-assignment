@@ -66,11 +66,11 @@ class Game():
         winner_cards.append(card1)
         winner_cards.append(card2)
         if isinstance(card1.value, tuple):
-            card1_value = card1.value[1]
+            card1_value = card1.get_value_dressed()
         else:
             card1_value = card1.value
         if isinstance(card2.value, tuple):
-            card2_value = card2.value[1]
+            card2_value = card2.get_value_dressed()
         else:
             card2_value = card2.value
 
@@ -89,7 +89,23 @@ class Game():
             p2_face_up = self.player2.cardhand.war()[1]
             winner_cards.append(p1_face_up)
             winner_cards.append(p2_face_up)
-            if p1_face_up > p2_face_up:
+            if isinstance(p1_face_up.value, tuple):
+                p1_face_up_value = p1_face_up.get_value_dressed()
+            else:
+                p1_face_up_value = p1_face_up.value
+            if isinstance(p2_face_up.value, tuple):
+                p2_face_up_value = p2_face_up.get_value_dressed()
+            else:
+                print("WAAAAAAR!!!")
+                p2_face_up_value = p2_face_up.value
+
+            if p1_face_up_value > p2_face_up_value:
                 self.player1.cardhand.recieve_cards(winner_cards)
-                print(f"")
-                
+                print(f"{self.player1.name} Wins!\n{p1_face_up.show()} beats {p2_face_up.show()}!")
+                print(f"All cards go to {self.player1.name}")
+            elif p2_face_up_value > p1_face_up_value:
+                self.player2.cardhand.recieve_cards(winner_cards)
+                print(f"{self.player2.name} Wins!\n{p2_face_up.show()} beats {p1_face_up.show()}!")
+                print(f"All cards go to {self.player2.name}")
+            else:
+                print("DRAW")

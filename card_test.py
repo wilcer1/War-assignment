@@ -56,4 +56,13 @@ class TestCardClass(unittest.TestCase):
         self.card = card.Card("Diamonds", 14)
         exp = "Ace of Diamonds"
         res = self.card.show()
-        self.assertEqual(exp, res[0])
+        self.assertEqual(exp, res)
+
+    def test_get_value_dressed(self):
+        """Check if method returns only if card is dressed."""
+        with self.assertRaises(TypeError):
+            self.card.get_value_dressed()
+        self.card = card.Card("Diamonds", 13)
+        res = self.card.get_value_dressed()
+        exp = 13
+        self.assertEqual(res, exp)

@@ -24,6 +24,13 @@ class Card():
     def show(self):
         """Return the card as String."""
         if isinstance(self.value, tuple):
-            return f"{self.value[0]} of {self.suit}", self.value[1]
+            return f"{self.value[0]} of {self.suit}"
         else:
             return f"{self.value} of {self.suit}"
+
+    def get_value_dressed(self):
+        """Return cardvalue integer only if card is dressed."""
+        if isinstance(self.value, tuple):
+            return self.value[1]
+        else:
+            raise TypeError("Card is not dressed")

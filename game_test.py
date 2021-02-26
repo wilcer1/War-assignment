@@ -98,8 +98,6 @@ class TestGameClass(unittest.TestCase):
         self.assertEqual(p1.cardhand.cards_remaining(),
                          p2.cardhand.cards_remaining())
 
-        # p1.cardhand.hand.clear()
-        # p2.cardhand.hand.clear()
         self.game.start()
         p1, p2 = self.game.get_players()
         self.game.draw()
