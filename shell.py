@@ -8,12 +8,64 @@ import game
 
 
 class Shell(cmd.Cmd):
-    """Class with command arguments to play the cardgame"""
+    """Class with command arguments to play the cardgame."""
 
     intro = 'Welcome to War. Type help or ? to list commands.\n'
     prompt = '(...) '
 
     def __init__(self):
+        """Initialize shell and game."""
         super().__init__()
         self.game = game.Game()
-        
+
+    def do_player(self, _):
+        """Create player(s)."""
+        players = int(input("1 or 2 players?"))
+        if not isinstance(players, int):
+            raise TypeError("1 or 2 allowed")
+        if players == 1:
+            name = input("Enter your name: ")
+            if not isinstance(name, str):
+                raise TypeError("Must be a string")
+            self.game.set_player(1, name)
+        elif players == 2:
+            name = input("Enter Player 1's name: ")
+            if not isinstance(name, str):
+                raise TypeError("Must be a string")
+            name2 = input("Enter Player 2's name: ")
+            if not isinstance(name, str):
+                raise TypeError("Must be a string")
+            self.game.set_player(1, name)
+            self.game.set_player(2, name2)
+        print("Player(s) created")
+
+    def do_start(self, _):
+        """Start the game and deal the deck."""
+        if self.game.player1 is None:
+            print(self.game.start())
+        else:
+            self.game.start()
+            print("Deck has been dealt, type draw to draw card")
+
+    def do_draw(self, _):
+        """Draw a new card."""
+        p1_card, p2_card = self.game.draw()
+        self.game.round_winner(p1_card, p2_card)
+
+    def do_exit(self, _):
+        # pylint: disable=no-self-use
+        """Leave the game."""
+        print("Bye bye - see ya soon again")
+        return True
+
+    def do_quit(self, arg):
+        """Leave the game."""
+        return self.do_exit(arg)
+
+    def do_q(self, arg):
+        """Leave the game."""
+        return self.do_exit(arg)
+
+    def do_EOF(self, arg):
+        """Leave the game."""
+        return self.do_exit(arg)
