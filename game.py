@@ -41,11 +41,12 @@ class Game():
         else:
             if self.player2 is None:
                 self.player2 = player.Player("Computer")
-                self.deck.build_deck()
-                self.deck.shuffle_deck()
-                decksplit = self.deck.deal_deck()
-                self.player1.cardhand.recieve_cards(decksplit[0])
-                self.player2.cardhand.recieve_cards(decksplit[1])
+
+            self.deck.build_deck()
+            self.deck.shuffle_deck()
+            decksplit = self.deck.deal_deck()
+            self.player1.cardhand.recieve_cards(decksplit[0])
+            self.player2.cardhand.recieve_cards(decksplit[1])
 
     def draw(self):
         """Draw cards and return them."""
