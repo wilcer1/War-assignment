@@ -34,5 +34,5 @@ class TestIntelligenceClass(unittest.TestCase):
         intelligence.Intelligence.war(self, intelligence.war)
 
     def test_match_point(self):
-        self.assertEqual(intelligence.match_point, "has 1 card remaining")
+        self.assertEqual(intelligence.match_point, " has 1 card remaining")
         intelligence.Intelligence.match_point(self, intelligence.match_point)
