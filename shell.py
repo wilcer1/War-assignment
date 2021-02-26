@@ -67,5 +67,6 @@ class Shell(cmd.Cmd):
         return self.do_exit(arg)
 
     def do_EOF(self, arg):
+        # pylint: disable=invalid-name
         """Leave the game."""
         return self.do_exit(arg)
