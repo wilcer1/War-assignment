@@ -4,9 +4,7 @@
 """Using cmd module and specifically cmdloop and a shell for main program."""
 
 import cmd
-import card
-import cardhand
-import deck
+import game
 
 
 class Shell(cmd.Cmd):
@@ -17,4 +15,5 @@ class Shell(cmd.Cmd):
 
     def __init__(self):
         super().__init__()
+        self.game = game.Game()
         

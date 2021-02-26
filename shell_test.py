@@ -5,6 +5,7 @@
 
 import shell
 import unittest
+import game
 
 
 class TestShellClass(unittest.TestCase):
@@ -13,6 +14,7 @@ class TestShellClass(unittest.TestCase):
     def setUp(self):
         """Instantiate shell in setUp to keep code D.R.Y."""
         self.shell = shell.Shell()
+        self.game = game.Game()
 
     def tearDown(self):
         """Delete setup instance after usage."""
@@ -22,4 +24,6 @@ class TestShellClass(unittest.TestCase):
         """Check instance of shell and game."""
         exp = shell.Shell
         self.assertIsInstance(self.shell, exp)
+        exp = game.Game
+        self.assertIsInstance(self.game, exp)
 
