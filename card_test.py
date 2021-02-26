@@ -24,24 +24,27 @@ class TestCardClass(unittest.TestCase):
         exp = card.Card
         self.assertIsInstance(res, exp)
 
+        self.card = card.Card("Diamonds", 5)
+        self.assertEqual(self.card.value, 5)
+
         self.card = card.Card("Diamonds", 11)
-        res = self.card.value
-        exp = "Jack"
+        res = self.card.value[1]
+        exp = 11
         self.assertEqual(res, exp)
 
         self.card = card.Card("Diamonds", 12)
-        res = self.card.value
-        exp = "Queen"
+        res = self.card.value[1]
+        exp = 12
         self.assertEqual(res, exp)
 
         self.card = card.Card("Diamonds", 13)
-        res = self.card.value
-        exp = "King"
+        res = self.card.value[1]
+        exp = 13
         self.assertEqual(res, exp)
 
         self.card = card.Card("Diamonds", 14)
-        res = self.card.value
-        exp = "Ace"
+        res = self.card.value[1]
+        exp = 14
         self.assertEqual(res, exp)
 
     def test_show(self):
@@ -54,3 +57,12 @@ class TestCardClass(unittest.TestCase):
         exp = "Ace of Diamonds"
         res = self.card.show()
         self.assertEqual(exp, res)
+
+    def test_get_value_dressed(self):
+        """Check if method returns only if card is dressed."""
+        with self.assertRaises(TypeError):
+            self.card.get_value_dressed()
+        self.card = card.Card("Diamonds", 13)
+        res = self.card.get_value_dressed()
+        exp = 13
+        self.assertEqual(res, exp)

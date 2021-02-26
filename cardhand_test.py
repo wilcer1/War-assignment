@@ -63,4 +63,4 @@ class TestDiceClass(unittest.TestCase):
         self.assertIsInstance(res[0], card.Card)
 
         res = tot_res[1]
-        self.assertIsInstance(res, str)
+        self.assertIsInstance(res, card.Card)

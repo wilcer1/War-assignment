@@ -29,4 +29,4 @@ class Cardhand:
             index = random.randint(0, len(self.hand) - 1)
             face_down.append(self.hand.pop(index))
         face_up = self.hand.pop(random.randint(0, len(self.hand) - 1))
-        return face_down, face_up.show()
+        return face_down, face_up
