@@ -107,3 +107,4 @@ class TestGameClass(unittest.TestCase):
         exp = p1.cardhand.cards_remaining() > p2.cardhand.cards_remaining()\
             or p2.cardhand.cards_remaining() > p1.cardhand.cards_remaining()
         self.assertTrue(exp)
+

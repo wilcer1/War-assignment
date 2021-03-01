@@ -63,9 +63,9 @@ class Game():
 
     def round_winner(self, card1, card2):
         """Give cards to winner, if equal call war, return string."""
-        winner_cards = []
-        winner_cards.append(card1)
-        winner_cards.append(card2)
+        self.winner_cards = []
+        self.winner_cards.append(card1)
+        self.winner_cards.append(card2)
         if isinstance(card1.value, tuple):
             card1_value = card1.get_value_dressed()
         else:
@@ -76,45 +76,81 @@ class Game():
             card2_value = card2.value
 
         if card1_value > card2_value:
-            self.player1.cardhand.recieve_cards(winner_cards)
+            self.player1.cardhand.recieve_cards(self.winner_cards)
             print(f"{self.player1.name} wins!\n{card1.show()} beats\
                  {card2.show()}")
         elif card1_value < card2_value:
-            self.player2.cardhand.recieve_cards(winner_cards)
+            self.player2.cardhand.recieve_cards(self.winner_cards)
             print(f"{self.player2.name} wins!\n{card2.show()} beats\
                  {card1.show()}")
         else:
-            print("WAAAAAAR!!!")
-            p1_face_down, p1_face_up = self.player1.cardhand.war()
-            p2_face_down, p2_face_up = self.player2.cardhand.war()
-            winner_cards.append(p1_face_up)
-            winner_cards.append(p2_face_up)
-            for c in p1_face_down:
-                winner_cards.append(c)
-            for i in p2_face_down:
-                winner_cards.append(i)
-            if isinstance(p1_face_up.value, tuple):
-                p1_face_up_value = p1_face_up.get_value_dressed()
-            else:
-                p1_face_up_value = p1_face_up.value
-            if isinstance(p2_face_up.value, tuple):
-                p2_face_up_value = p2_face_up.get_value_dressed()
-            else:
-                p2_face_up_value = p2_face_up.value
+            self.war(False)
 
-            if p1_face_up_value > p2_face_up_value:
-                print(f"{self.player1.name} Wins!\n{p1_face_up.show()} beats\
-                      {p2_face_up.show()}!")
-                print(f"All {len(winner_cards)} cards go to {self.player1.name}")
-                self.player1.cardhand.recieve_cards(winner_cards)
-            elif p2_face_up_value > p1_face_up_value:
-                print(f"{self.player2.name} Wins!\n{p2_face_up.show()} beats\
-                     {p1_face_up.show()}!")
-                print(f"All {len(winner_cards)} cards go to {self.player2.name}")
-                self.player2.cardhand.recieve_cards(winner_cards)
-            else:
-                print("DRAW")
         print(f"{self.player1.name} cards remaining:\
              {self.player1.cardhand.cards_remaining()}")
         print(f"{self.player2.name} cards remaining:\
              {self.player2.cardhand.cards_remaining()}")
+        self.winner_cards.clear()
+
+    def war(self, bool):
+        """War function."""
+        if bool is True:
+            self.winner_cards.clear()
+        print("WAAAAAAR!!!")
+        p1_face_down, p1_face_up = self.player1.cardhand.war()
+        p2_face_down, p2_face_up = self.player2.cardhand.war()
+        self.winner_cards.append(p1_face_up)
+        self.winner_cards.append(p2_face_up)
+        for c in p1_face_down:
+            self.winner_cards.append(c)
+        for i in p2_face_down:
+            self.winner_cards.append(i)
+        if isinstance(p1_face_up.value, tuple):
+            p1_face_up_value = p1_face_up.get_value_dressed()
+        else:
+            p1_face_up_value = p1_face_up.value
+        if isinstance(p2_face_up.value, tuple):
+            p2_face_up_value = p2_face_up.get_value_dressed()
+        else:
+            p2_face_up_value = p2_face_up.value
+
+        if p1_face_up_value > p2_face_up_value:
+            print(f"{self.player1.name} Wins!\n{p1_face_up.show()} beats\
+                {p2_face_up.show()}!")
+            print(f"All {len(self.winner_cards)} cards go to {self.player1.name}")
+            self.player1.cardhand.recieve_cards(self.winner_cards)
+        elif p2_face_up_value > p1_face_up_value:
+            print(f"{self.player2.name} Wins!\n{p2_face_up.show()} beats\
+                {p1_face_up.show()}!")
+            print(f"All {len(self.winner_cards)} cards go to {self.player2.name}")
+            self.player2.cardhand.recieve_cards(self.winner_cards)
+        print(f"{self.player1.name} cards remaining:\
+             {self.player1.cardhand.cards_remaining()}")
+        print(f"{self.player2.name} cards remaining:\
+             {self.player2.cardhand.cards_remaining()}")
+
+
+    def check_cards(self):
+        """Check if players have less than or 5 cards."""
+        if self.player1.cardhand.cards_remaining() <= 5:
+            return True
+        elif self.player2.cardhand.cards_remaining() <= 5:
+            return True
+        else:
+            return False
+
+    def check_for_winner(self):
+        """Check if anyone won."""
+        if self.player1.cardhand.cards_remaining() == 0:
+            print("player 2 wins")
+            return True
+        elif self.player2.cardhand.cards_remaining() == 0:
+            print("player1 wins")
+            return True
+        else:
+            return False
+            
+
+    def count_rounds(self, rounds):
+        """Count rounds played."""
+        return rounds + 1

@@ -17,6 +17,7 @@ class Shell(cmd.Cmd):
         """Initialize shell and game."""
         super().__init__()
         self.game = game.Game()
+        self.rounds = 0
 
     def do_player(self, _):
         """Create player(s)."""
@@ -49,8 +50,15 @@ class Shell(cmd.Cmd):
 
     def do_draw(self, _):
         """Draw a new card."""
-        p1_card, p2_card = self.game.draw()
-        self.game.round_winner(p1_card, p2_card)
+        self.rounds = self.game.count_rounds(self.rounds)
+        if self.game.check_cards():
+            self.game.war(True)
+            if self.game.check_for_winner():
+                print(f"It took {self.rounds} rounds")
+                quit()
+        else:
+            p1_card, p2_card = self.game.draw()
+            self.game.round_winner(p1_card, p2_card)
 
     def do_exit(self, _):
         # pylint: disable=no-self-use
@@ -72,7 +80,7 @@ class Shell(cmd.Cmd):
         return self.do_exit(arg)
 
     def do_autodraw(self, _):
-        """Draw until crash."""
-        while True:
+        """Draw until 5 cards left."""
+        while not self.game.check_cards():
             p1_card, p2_card = self.game.draw()
             self.game.round_winner(p1_card, p2_card)
