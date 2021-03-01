@@ -70,3 +70,9 @@ class Shell(cmd.Cmd):
         # pylint: disable=invalid-name
         """Leave the game."""
         return self.do_exit(arg)
+
+    def do_autodraw(self, _):
+        """Draw until crash."""
+        while True:
+            p1_card, p2_card = self.game.draw()
+            self.game.round_winner(p1_card, p2_card)

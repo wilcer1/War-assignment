@@ -84,12 +84,15 @@ class Game():
             print(f"{self.player2.name} wins!\n{card2.show()} beats\
                  {card1.show()}")
         else:
-            winner_cards.append(self.player1.cardhand.war()[0])
-            p1_face_up = self.player1.cardhand.war()[1]
-            winner_cards.append(self.player2.cardhand.war()[0])
-            p2_face_up = self.player2.cardhand.war()[1]
+            print("WAAAAAAR!!!")
+            p1_face_down, p1_face_up = self.player1.cardhand.war()
+            p2_face_down, p2_face_up = self.player2.cardhand.war()
             winner_cards.append(p1_face_up)
             winner_cards.append(p2_face_up)
+            for c in p1_face_down:
+                winner_cards.append(c)
+            for i in p2_face_down:
+                winner_cards.append(i)
             if isinstance(p1_face_up.value, tuple):
                 p1_face_up_value = p1_face_up.get_value_dressed()
             else:
@@ -97,19 +100,18 @@ class Game():
             if isinstance(p2_face_up.value, tuple):
                 p2_face_up_value = p2_face_up.get_value_dressed()
             else:
-                print("WAAAAAAR!!!")
                 p2_face_up_value = p2_face_up.value
 
             if p1_face_up_value > p2_face_up_value:
-                self.player1.cardhand.recieve_cards(winner_cards)
                 print(f"{self.player1.name} Wins!\n{p1_face_up.show()} beats\
                       {p2_face_up.show()}!")
-                print(f"All cards go to {self.player1.name}")
+                print(f"All {len(winner_cards)} cards go to {self.player1.name}")
+                self.player1.cardhand.recieve_cards(winner_cards)
             elif p2_face_up_value > p1_face_up_value:
-                self.player2.cardhand.recieve_cards(winner_cards)
                 print(f"{self.player2.name} Wins!\n{p2_face_up.show()} beats\
                      {p1_face_up.show()}!")
-                print(f"All cards go to {self.player2.name}")
+                print(f"All {len(winner_cards)} cards go to {self.player2.name}")
+                self.player2.cardhand.recieve_cards(winner_cards)
             else:
                 print("DRAW")
         print(f"{self.player1.name} cards remaining:\
