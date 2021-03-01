@@ -17,7 +17,6 @@ class Shell(cmd.Cmd):
         """Initialize shell and game."""
         super().__init__()
         self.game = game.Game()
-        self.rounds = 0
 
     def do_player(self, _):
         """Create player(s)."""
@@ -50,11 +49,10 @@ class Shell(cmd.Cmd):
 
     def do_draw(self, _):
         """Draw a new card."""
-        self.rounds = self.game.count_rounds(self.rounds)
         if self.game.check_cards():
-            self.game.war(True)
+            self.game.war([])
             if self.game.check_for_winner():
-                print(f"It took {self.rounds} rounds")
+                print(f"It took {self.game.rounds} rounds")
                 quit()
         else:
             p1_card, p2_card = self.game.draw()
