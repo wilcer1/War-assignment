@@ -102,13 +102,17 @@ class Game():
 
             if p1_face_up_value > p2_face_up_value:
                 self.player1.cardhand.recieve_cards(winner_cards)
-                print(f"{self.player1.name} Wins!\n{p1_face_up.show()} beats {p2_face_up.show()}!")
+                print(f"{self.player1.name} Wins!\n{p1_face_up.show()} beats\
+                      {p2_face_up.show()}!")
                 print(f"All cards go to {self.player1.name}")
             elif p2_face_up_value > p1_face_up_value:
                 self.player2.cardhand.recieve_cards(winner_cards)
-                print(f"{self.player2.name} Wins!\n{p2_face_up.show()} beats {p1_face_up.show()}!")
+                print(f"{self.player2.name} Wins!\n{p2_face_up.show()} beats\
+                     {p1_face_up.show()}!")
                 print(f"All cards go to {self.player2.name}")
             else:
                 print("DRAW")
-        print(f"{self.player1.name} cards remaining: {self.player1.cardhand.cards_remaining()}")
-        print(f"{self.player2.name} cards remaining: {self.player2.cardhand.cards_remaining()}")
+        print(f"{self.player1.name} cards remaining:\
+             {self.player1.cardhand.cards_remaining()}")
+        print(f"{self.player2.name} cards remaining:\
+             {self.player2.cardhand.cards_remaining()}")
