@@ -1,6 +1,5 @@
 """Test Highscore Class."""
 import unittest
-import os
 import highscore
 import player
 
@@ -9,8 +8,8 @@ class TestHighscoreClass(unittest.TestCase):
     """Test Highscore Class."""
 
     def setUp(self):
-        """Create test_highscore.txt file."""
-        self.h = highscore.Highscore()
+        """Create test_file.txt file."""
+        self.h = highscore.Highscore("test_file.txt")
 
         self.unsorted_test_list = []
         self.unsorted_test_list.append((2, "Joker"))
@@ -27,7 +26,15 @@ class TestHighscoreClass(unittest.TestCase):
     @classmethod
     def tearDownClass(cls):
         """Remove test file."""
-        os.remove("test_file.txt")
+        # os.remove("test_file.txt")
+
+    def test_init_default_object(self):
+        """Test class attribute."""
+        res = self.h.path
+        print(res)
+        exp = "test_file.txt"
+        self.assertEqual(res, exp)
+        self.assertIsInstance(self.h, highscore.Highscore)
 
     def test_create_highscore_file(self):
         """Tests if highscore file is created."""
@@ -48,27 +55,26 @@ class TestHighscoreClass(unittest.TestCase):
         """Test if highscore is written to text file."""
         exp = []
         for score, name in self.test_list:
-            exp.append(f"{name} has {score} points\n")
+            exp.append(f"{score}:{name}\n")
 
         self.h.write_to_highscore(self.test_list)
 
         with open("test_file.txt", "r") as test_file:
-
             res = []
             for line in test_file:
                 res.append(line)
-
         self.assertListEqual(res, exp)
 
     def test_read_highscore(self):
-        """Test reading highscore and adding to list"""
+        """Test reading highscore and adding to list."""
 
     def test_add_highscore(self):
         """Test add player highscore to file."""
         # Remove added player from test_list to not fuck up rest of the test
         # if run out of order, .
         test_player = player.Player("Gimli")
-        res = self.h.add_highscore(13, test_player.name, self.test_list)
+        self.h.add_highscore(13, test_player.name)
+        res = self.h.read_highscore(self.h.path)
         exp = self.test_list
         exp.append((13, "Gimli"))
         self.assertEqual(exp, res)
