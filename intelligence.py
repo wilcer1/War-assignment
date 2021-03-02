@@ -7,20 +7,24 @@ match_point = " has 1 card remaining"
 
 
 class Intelligence():
-    """intelligence class"""
+    """Intelligence class."""
 
-    def win(self, win):  # you won
+    def win(self, win):
         """Win function."""
         print(win)
 
-    def lose(self, lose):  # you lost
+    def lose(self, lose):
+        """Lose function"""
         print(lose)
 
-    def start(self, start):  # glhf message
+    def start(self, start):
+        """Start function."""
         print(start)
 
-    def war(self, war):  # If cards is the same
+    def war(self, war):
+        """War function."""
         print(war)
 
-    def match_point(self, match_point):  # If a player only has 1 card
+    def match_point(self, match_point):
+        """Match_point function."""
         print(match_point)
