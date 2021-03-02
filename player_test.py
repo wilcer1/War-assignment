@@ -23,7 +23,7 @@ class TestPlayerClass(unittest.TestCase):
 
     def test_change_name(self):
         """Test player name change."""
-        self.player.set_player = "Wille"
+        self.player.set_name("Wille")
         res = self.player.get_name()
         exp = "Wille"
         self.assertEqual(res, exp)
