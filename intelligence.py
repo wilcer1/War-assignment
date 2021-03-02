@@ -1,4 +1,5 @@
-"""intelligence class"""
+"""Intelligence class."""
+
 win = ", you are pro!"
 lose = "Better luck next time "
 start = "Good luck have fun!"
@@ -14,7 +15,7 @@ class Intelligence():
         print(win)
 
     def lose(self, lose):
-        """Lose function"""
+        """Lose function."""
         print(lose)
 
     def start(self, start):

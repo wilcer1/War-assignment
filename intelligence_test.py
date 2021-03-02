@@ -1,8 +1,8 @@
+"""Test intelligence class."""
+
 import unittest
 import intelligence
 import player
-
-"""Test intelligence class."""
 
 
 class TestIntelligenceClass(unittest.TestCase):
