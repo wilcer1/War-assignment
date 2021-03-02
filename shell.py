@@ -6,12 +6,12 @@
 import cmd
 import game
 
- 
+
 class Shell(cmd.Cmd):
     """Class with command arguments to play the cardgame."""
 
-    intro = 'Welcome to War. Type help or ? to list commands.\n'
-    prompt = '(...) '
+    intro = "Welcome to War. Type help or ? to list commands.\n"
+    prompt = "(...) "
 
     def __init__(self):
         """Initialize shell and game."""
