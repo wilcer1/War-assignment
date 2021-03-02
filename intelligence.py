@@ -10,6 +10,7 @@ class Intelligence():
     """intelligence class"""
 
     def win(self, win):  # you won
+        """Win function."""
         print(win)
 
     def lose(self, lose):  # you lost
