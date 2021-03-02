@@ -26,4 +26,3 @@ class TestShellClass(unittest.TestCase):
         self.assertIsInstance(self.shell, exp)
         exp = game.Game
         self.assertIsInstance(self.game, exp)
-
