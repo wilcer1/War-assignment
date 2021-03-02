@@ -1,5 +1,6 @@
 import unittest
 import intelligence
+import player
 
 """Test intelligence class."""
 
@@ -8,19 +9,21 @@ class TestIntelligenceClass(unittest.TestCase):
     """Test intelligence class."""
 
     def setUp(self):
-        pass
+        self.player1
+        self.player2
 
     def tearDown(self):
         pass
 
     def test_win(self):
         """Test win function"""
-        self.assertEqual(intelligence.win, "You are pro!")
+        self.assertEqual(intelligence.win, " you are pro!")
+        print(self.player1)
         intelligence.Intelligence.win(self, intelligence.win)
 
     def test_lose(self):
         """Test lose function"""
-        self.assertEqual(intelligence.lose, "Better luck next time")
+        self.assertEqual(intelligence.lose, "Better luck next time ")
         intelligence.Intelligence.lose(self, intelligence.lose)
 
     def test_start(self):
@@ -36,3 +39,6 @@ class TestIntelligenceClass(unittest.TestCase):
     def test_match_point(self):
         self.assertEqual(intelligence.match_point, " has 1 card remaining")
         intelligence.Intelligence.match_point(self, intelligence.match_point)
+
+if __name__ == "__main__":
+    unittest.main()

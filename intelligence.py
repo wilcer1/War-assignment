@@ -1,6 +1,6 @@
 """intelligence class"""
-win = "You are pro!"
-lose = "Better luck next time"
+win = " you are pro!"
+lose = "Better luck next time "
 start = "Good luck have fun!"
 war = "This is a war!"
 match_point = " has 1 card remaining"

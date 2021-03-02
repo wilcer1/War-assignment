@@ -1,0 +1,8 @@
+Method for when someone wins
+method for last 3 cards
+counting rounds
+highscore and intelligence incorporation
+flake8 lintergarbage
+cure depression
+bugfixing?! test for bugs and fix yes
+better uníttesting?

@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*- #
 
 """Card class."""
-
+ 
 
 class Card():
     """Card class."""
