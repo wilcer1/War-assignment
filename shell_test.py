@@ -3,8 +3,9 @@
 
 """Unittesting shell."""
 
-import shell
+
 import unittest
+import shell
 import game
 
 
@@ -19,6 +20,7 @@ class TestShellClass(unittest.TestCase):
     def tearDown(self):
         """Delete setup instance after usage."""
         del self.shell
+        del self.game
 
     def test_init_default_object(self):
         """Check instance of shell and game."""
@@ -26,4 +28,3 @@ class TestShellClass(unittest.TestCase):
         self.assertIsInstance(self.shell, exp)
         exp = game.Game
         self.assertIsInstance(self.game, exp)
-
