@@ -144,5 +144,14 @@ class TestGameClass(unittest.TestCase):
         self.game.start()
         self.assertFalse(self.game.check_cards())
 
-
-
+    def test_check_for_winner(self):
+        """Test checkforwinner method."""
+        self.game.set_player(1, "Wille")
+        self.game.set_player(2, "Timmy")
+        p1, p2 = self.game.get_players()
+        self.assertTrue(self.game.check_for_winner())
+        crd = card.Card("Diamonds", 5)
+        p1.cardhand.hand.append(crd)
+        self.assertTrue(self.game.check_for_winner())
+        p2.cardhand.hand.append(crd)
+        self.assertFalse(self.game.check_for_winner())
