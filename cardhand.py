@@ -32,7 +32,7 @@ class Cardhand:
             face_up = self.hand.pop(random.randint(0, len(self.hand) - 1))
         else:
             face_up = self.hand.pop(random.randint(0, len(self.hand) - 1))
-            for c in self.hand:
-                face_down.append(c)
-                self.hand.remove(c)
+            for card in self.hand:
+                face_down.append(card)
+                self.hand.remove(card)
         return face_down, face_up

@@ -3,8 +3,8 @@
 
 """Game class with logic."""
 
-import deck
 import random
+import deck
 import player
 
 
@@ -35,32 +35,32 @@ class Game():
 
     def start(self):
         """Create, shuffle and deal deck evenly."""
-        """If player 2 is not set, create new
-            instance with name computer"""
+        # If player 2 is not set, create new
+        # instance with name computer
         if self.player1 is None and self.player2 is None:
             return "Create player(s) first"
-        else:
-            if self.player2 is None:
-                self.player2 = player.Player("Computer")
 
-            self.deck.build_deck()
-            self.deck.shuffle_deck()
-            decksplit = self.deck.deal_deck()
-            self.player1.cardhand.recieve_cards(decksplit[0])
-            self.player2.cardhand.recieve_cards(decksplit[1])
+        if self.player2 is None:
+            self.player2 = player.Player("Computer")
+
+        self.deck.build_deck()
+        self.deck.shuffle_deck()
+        decksplit = self.deck.deal_deck()
+        self.player1.cardhand.recieve_cards(decksplit[0])
+        self.player2.cardhand.recieve_cards(decksplit[1])
 
     def draw(self):
         """Draw cards and return them."""
         if self.player1 is None and self.player2 is None:
             return "Create player(s) and start game first"
-        else:
-            p1_cards = self.player1.cardhand.cards_remaining() - 1
-            p2_cards = self.player2.cardhand.cards_remaining() - 1
-            p1_int = random.randint(0, (p1_cards))
-            p1_card = self.player1.cardhand.hand.pop(p1_int)
-            p2_int = random.randint(0, (p2_cards))
-            p2_card = self.player2.cardhand.hand.pop(p2_int)
-            return p1_card, p2_card
+
+        p1_cards = self.player1.cardhand.cards_remaining() - 1
+        p2_cards = self.player2.cardhand.cards_remaining() - 1
+        p1_int = random.randint(0, (p1_cards))
+        p1_card = self.player1.cardhand.hand.pop(p1_int)
+        p2_int = random.randint(0, (p2_cards))
+        p2_card = self.player2.cardhand.hand.pop(p2_int)
+        return p1_card, p2_card
 
     def round_winner(self, card1, card2):
         """Give cards to winner, if equal call war, return string."""
@@ -100,10 +100,10 @@ class Game():
         p2_face_down, p2_face_up = self.player2.cardhand.war()
         winner_cards.append(p1_face_up)
         winner_cards.append(p2_face_up)
-        for c in p1_face_down:
-            winner_cards.append(c)
-        for i in p2_face_down:
-            winner_cards.append(i)
+        for card in p1_face_down:
+            winner_cards.append(card)
+        for card in p2_face_down:
+            winner_cards.append(card)
         if isinstance(p1_face_up.value, tuple):
             p1_face_up_value = p1_face_up.get_value_dressed()
         else:
@@ -124,7 +124,7 @@ class Game():
             print(f"All {len(winner_cards)} cards go to {self.player2.name}")
             self.player2.cardhand.recieve_cards(winner_cards)
         else:
-            self.war(self.winner_cards)
+            self.war(winner_cards)
         print(f"{self.player1.name} cards remaining:\
              {self.player1.cardhand.cards_remaining()}")
         print(f"{self.player2.name} cards remaining:\
@@ -134,18 +134,17 @@ class Game():
         """Check if players have less than or 5 cards."""
         if self.player1.cardhand.cards_remaining() <= 5:
             return True
-        elif self.player2.cardhand.cards_remaining() <= 5:
+        if self.player2.cardhand.cards_remaining() <= 5:
             return True
-        else:
-            return False
+        return False
 
     def check_for_winner(self):
         """Check if anyone won."""
         if self.player1.cardhand.cards_remaining() == 0:
             print("player 2 wins")
             return True
-        elif self.player2.cardhand.cards_remaining() == 0:
+        if self.player2.cardhand.cards_remaining() == 0:
             print("player1 wins")
             return True
-        else:
-            return False
+
+        return False

@@ -10,3 +10,11 @@ class Player:
         """Init the object and set attributes."""
         self.name = name
         self.cardhand = cardhand.Cardhand()
+
+    def set_name(self, name):
+        """Set player name."""
+        self.name = name
+
+    def get_name(self):
+        """Get player name."""
+        return self.name
