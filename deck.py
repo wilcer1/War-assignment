@@ -17,9 +17,9 @@ class Deck:
 
     def build_deck(self):
         """Build the deck using a nested for loop to avoid duplicates."""
-        for s in self.suits:
-            for v in range(2, 15):
-                self.deck.append(card.Card(s, v))
+        for suit in self.suits:
+            for value in range(2, 15):
+                self.deck.append(card.Card(suit, value))
 
     def get_deck(self):
         """Return deck attribute."""

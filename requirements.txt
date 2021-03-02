@@ -1,0 +1,15 @@
+# Unittest
+coverage
+
+# Code analysis
+bandit
+#metrics.pylint
+flake8
+flake8-docstrings
+flake8-polyfill
+pylint
+radon
+
+# Documentation
+pdoc3
+sphinx

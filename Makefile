@@ -1,7 +1,6 @@
 #!/usr/bin/env make
 
-PYTHON = python3
-#PYTHON = python
+PYTHON = python
 
 .PHONY: pydoc
 
@@ -9,8 +8,12 @@ all:
 
 venv:
 	[ -d .venv ] || $(PYTHON) -m venv .venv
-	@echo "Now activate the Python virtual environment:\n. .venv/bin/activate"
-	@echo "Type 'deactivate' to deactivate."
+	@printf "Now activate the Python virtual environment.\n"
+	@printf "On Unix and Mac, do:\n"
+	@printf ". .venv/bin/activate\n"
+	@printf "On Windows, do:\n"
+	@printf ". .venv/Scripts/activate\n"
+	@printf "Type 'deactivate' to deactivate."
 
 install:
 	$(PYTHON) -m pip install -r requirements.txt
@@ -38,7 +41,7 @@ coverage:
 	coverage report -m
 
 pylint:
-	pylint dice.py dice_test.py
+	pylint *.py
 
 flake8:
 	flake8

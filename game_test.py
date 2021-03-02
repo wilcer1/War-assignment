@@ -42,15 +42,15 @@ class TestGameClass(unittest.TestCase):
         self.game.set_player(2, "Timmy")
         self.game.start()
         res = self.game.get_players()
-        p1 = res[0]
-        p2 = res[1]
-        self.assertIsInstance(p1, player.Player)
-        self.assertIsInstance(p2, player.Player)
+        p_1 = res[0]
+        p_2 = res[1]
+        self.assertIsInstance(p_1, player.Player)
+        self.assertIsInstance(p_2, player.Player)
 
-        res = p1.name
+        res = p_1.name
         exp = "Wille"
         self.assertEqual(res, exp)
-        res = p2.name
+        res = p_2.name
         exp = "Timmy"
         self.assertEqual(exp, res)
 
@@ -62,10 +62,10 @@ class TestGameClass(unittest.TestCase):
 
         self.game.set_player(1, "Wille")
         self.game.start()
-        p1, p2 = self.game.get_players()
-        res = p1.cardhand.cards_remaining()
+        p_1, p_2 = self.game.get_players()
+        res = p_1.cardhand.cards_remaining()
         self.assertEqual(res, 26)
-        res = p2.cardhand.cards_remaining()
+        res = p_2.cardhand.cards_remaining()
         self.assertEqual(res, 26)
 
     def test_draw(self):
@@ -76,69 +76,69 @@ class TestGameClass(unittest.TestCase):
 
         self.game.set_player(1, "Wille")
         self.game.start()
-        p1, p2 = self.game.get_players()
-        p1_card, p2_card = self.game.draw()
-        res1 = p1.cardhand.cards_remaining()
-        res2 = p2.cardhand.cards_remaining()
+        p_1, p_2 = self.game.get_players()
+        p_1_card, p2_card = self.game.draw()
+        res1 = p_1.cardhand.cards_remaining()
+        res2 = p_2.cardhand.cards_remaining()
         self.assertEqual(res1, 25)
         self.assertEqual(res2, 25)
 
-        self.assertIsInstance(p1_card, card.Card)
+        self.assertIsInstance(p_1_card, card.Card)
         self.assertIsInstance(p2_card, card.Card)
 
     def test_round_winner(self):
         """Test round_winner method."""
         self.game.set_player(1, "Wille")
         self.game.start()
-        p1, p2 = self.game.get_players()
-        p1_card = card.Card("Diamonds", 5)
+        p_1, p_2 = self.game.get_players()
+        p_1_card = card.Card("Diamonds", 5)
         p2_card = card.Card("Diamonds", 4)
-        self.game.round_winner(p1_card, p2_card)
-        self.assertNotEqual(p1.cardhand.cards_remaining(),
-                            p2.cardhand.cards_remaining())
+        self.game.round_winner(p_1_card, p2_card)
+        self.assertNotEqual(p_1.cardhand.cards_remaining(),
+                            p_2.cardhand.cards_remaining())
 
-        p1_card = card.Card("Diamonds", 11)
+        p_1_card = card.Card("Diamonds", 11)
         p2_card = card.Card("Diamonds", 13)
-        self.game.round_winner(p1_card, p2_card)
-        self.assertEqual(p1.cardhand.cards_remaining(),
-                         p2.cardhand.cards_remaining())
+        self.game.round_winner(p_1_card, p2_card)
+        self.assertEqual(p_1.cardhand.cards_remaining(),
+                         p_2.cardhand.cards_remaining())
 
         self.game.start()
-        p1, p2 = self.game.get_players()
+        p_1, p_2 = self.game.get_players()
         self.game.draw()
-        p1_card = card.Card("Diamonds", 5)
+        p_1_card = card.Card("Diamonds", 5)
         p2_card = card.Card("Clubs", 5)
-        self.game.round_winner(p1_card, p2_card)
-        exp = p1.cardhand.cards_remaining() > p2.cardhand.cards_remaining()\
-            or p2.cardhand.cards_remaining() > p1.cardhand.cards_remaining()
+        self.game.round_winner(p_1_card, p2_card)
+        exp = p_1.cardhand.cards_remaining() > p_2.cardhand.cards_remaining()\
+            or p_2.cardhand.cards_remaining() > p_1.cardhand.cards_remaining()
         self.assertTrue(exp)
 
     def test_war(self):
         """Test the war class."""
         self.game.set_player(1, "Wille")
         self.game.start()
-        p1, p2 = self.game.get_players()
+        p_1, p_2 = self.game.get_players()
         self.game.war([])
-        exp = p1.cardhand.cards_remaining() > p2.cardhand.cards_remaining()\
-            or p2.cardhand.cards_remaining() > p1.cardhand.cards_remaining()
+        exp = p_1.cardhand.cards_remaining() > p_2.cardhand.cards_remaining()\
+            or p_2.cardhand.cards_remaining() > p_1.cardhand.cards_remaining()
         self.assertTrue(exp)
 
     def test_check_cards(self):
         """Test check cards method."""
         self.game.set_player(1, "Wille")
         self.game.set_player(2, "Timmy")
-        p1, p2 = self.game.get_players()
+        p_1, p_2 = self.game.get_players()
         cards = []
         card1 = card.Card("Diamonds", 5)
         cards.append(card1)
-        p1.cardhand.recieve_cards(cards)
-        p2.cardhand.recieve_cards(cards)
+        p_1.cardhand.recieve_cards(cards)
+        p_2.cardhand.recieve_cards(cards)
         self.assertTrue(self.game.check_cards())
 
         dck = deck.Deck()
         dck.build_deck()
         dck1 = dck.get_deck()
-        p1.cardhand.recieve_cards(dck1)
+        p_1.cardhand.recieve_cards(dck1)
         self.assertTrue(self.game.check_cards())
 
         self.game.start()
@@ -148,10 +148,10 @@ class TestGameClass(unittest.TestCase):
         """Test checkforwinner method."""
         self.game.set_player(1, "Wille")
         self.game.set_player(2, "Timmy")
-        p1, p2 = self.game.get_players()
+        p_1, p_2 = self.game.get_players()
         self.assertTrue(self.game.check_for_winner())
         crd = card.Card("Diamonds", 5)
-        p1.cardhand.hand.append(crd)
+        p_1.cardhand.hand.append(crd)
         self.assertTrue(self.game.check_for_winner())
-        p2.cardhand.hand.append(crd)
+        p_2.cardhand.hand.append(crd)
         self.assertFalse(self.game.check_for_winner())
