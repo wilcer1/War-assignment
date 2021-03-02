@@ -23,6 +23,8 @@ class Shell(cmd.Cmd):
         players = int(input("1 or 2 players?"))
         if not isinstance(players, int):
             raise TypeError("1 or 2 allowed")
+        if players not in range(1, 3):
+            raise ValueError("Only 1 or 2 players allowed")
         if players == 1:
             name = input("Enter your name: ")
             if not isinstance(name, str):
@@ -37,7 +39,7 @@ class Shell(cmd.Cmd):
                 raise TypeError("Must be a string")
             self.game.set_player(1, name)
             self.game.set_player(2, name2)
-        print("Player(s) created")
+        print("Player(s) created, type start to start the game")
 
     def do_start(self, _):
         """Start the game and deal the deck."""
@@ -55,7 +57,7 @@ class Shell(cmd.Cmd):
     def do_exit(self, _):
         # pylint: disable=no-self-use
         """Leave the game."""
-        print("Bye bye - see ya soon again")
+        print("Thank you for playing, come back soon")
         return True
 
     def do_quit(self, arg):
