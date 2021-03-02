@@ -7,6 +7,7 @@ import unittest
 import game
 import player
 import card
+import deck
 
 
 class TestGameClass(unittest.TestCase):
@@ -38,6 +39,7 @@ class TestGameClass(unittest.TestCase):
         self.assertEqual(res, exp)
 
         self.game.set_player(1, "Wille")
+        self.game.set_player(2, "Timmy")
         self.game.start()
         res = self.game.get_players()
         p1 = res[0]
@@ -48,6 +50,9 @@ class TestGameClass(unittest.TestCase):
         res = p1.name
         exp = "Wille"
         self.assertEqual(res, exp)
+        res = p2.name
+        exp = "Timmy"
+        self.assertEqual(exp, res)
 
     def test_start(self):
         """Test start method."""
@@ -107,4 +112,37 @@ class TestGameClass(unittest.TestCase):
         exp = p1.cardhand.cards_remaining() > p2.cardhand.cards_remaining()\
             or p2.cardhand.cards_remaining() > p1.cardhand.cards_remaining()
         self.assertTrue(exp)
+
+    def test_war(self):
+        """Test the war class."""
+        self.game.set_player(1, "Wille")
+        self.game.start()
+        p1, p2 = self.game.get_players()
+        self.game.war([])
+        exp = p1.cardhand.cards_remaining() > p2.cardhand.cards_remaining()\
+            or p2.cardhand.cards_remaining() > p1.cardhand.cards_remaining()
+        self.assertTrue(exp)
+
+    def test_check_cards(self):
+        """Test check cards method."""
+        self.game.set_player(1, "Wille")
+        self.game.set_player(2, "Timmy")
+        p1, p2 = self.game.get_players()
+        cards = []
+        card1 = card.Card("Diamonds", 5)
+        cards.append(card1)
+        p1.cardhand.recieve_cards(cards)
+        p2.cardhand.recieve_cards(cards)
+        self.assertTrue(self.game.check_cards())
+
+        dck = deck.Deck()
+        dck.build_deck()
+        dck1 = dck.get_deck()
+        p1.cardhand.recieve_cards(dck1)
+        self.assertTrue(self.game.check_cards())
+
+        self.game.start()
+        self.assertFalse(self.game.check_cards())
+
+
 

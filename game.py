@@ -124,7 +124,7 @@ class Game():
             print(f"All {len(winner_cards)} cards go to {self.player2.name}")
             self.player2.cardhand.recieve_cards(winner_cards)
         else:
-            self.war(winner_cards)
+            self.war(self.winner_cards)
         print(f"{self.player1.name} cards remaining:\
              {self.player1.cardhand.cards_remaining()}")
         print(f"{self.player2.name} cards remaining:\

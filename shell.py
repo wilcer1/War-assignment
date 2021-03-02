@@ -53,7 +53,7 @@ class Shell(cmd.Cmd):
             self.game.war([])
             if self.game.check_for_winner():
                 print(f"It took {self.game.rounds} rounds")
-                quit()
+
         else:
             p1_card, p2_card = self.game.draw()
             self.game.round_winner(p1_card, p2_card)
@@ -79,6 +79,6 @@ class Shell(cmd.Cmd):
 
     def do_autodraw(self, _):
         """Draw until 5 cards left."""
-        while not self.game.check_cards():
+        while not self.game.check_for_winner():
             p1_card, p2_card = self.game.draw()
             self.game.round_winner(p1_card, p2_card)
