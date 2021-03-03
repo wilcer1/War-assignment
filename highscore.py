@@ -25,14 +25,14 @@ class Highscore:
 
     def add_highscore(self, score, name):
         """Add player and score to highscore list."""
-        highscore_list = self.read_highscore(self.path)
+        highscore_list = self.read_highscore()
         highscore_list.append((score, name))
         self.write_to_highscore(highscore_list)
 
-    def read_highscore(self, path):
+    def read_highscore(self):
         """Read highscore from file and return list."""
         highscore_list = []
-        with open(path, "r") as text_file:
+        with open(self.path, "r") as text_file:
             for line in text_file:
                 line = line.rstrip("\n")
                 temp = line.split(":")
