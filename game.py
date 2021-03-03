@@ -6,6 +6,7 @@
 import random
 import deck
 import player
+import highscore
 
 
 class Game():
@@ -148,3 +149,10 @@ class Game():
             return True
 
         return False
+
+
+    def add_to_highscore(self):
+        """Add result to highscore."""
+        hiscore = highscore.Highscore("highscore.txt")
+        hiscore_list = hiscore.read_highscore()
+        hiscore.write_to_highscore()
