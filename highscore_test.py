@@ -2,6 +2,7 @@
 import unittest
 import highscore
 import player
+import os
 
 
 class TestHighscoreClass(unittest.TestCase):
@@ -17,12 +18,18 @@ class TestHighscoreClass(unittest.TestCase):
         self.test_list.append((3, "Robin"))
         self.test_list.append((4, "Batman"))
 
+    @classmethod
+    def tearDownClass(cls):
+        """Remove test_file.txt."""
+        os.remove("test_file.txt")
+
     def test_init_default_object(self):
         """Test class attribute."""
         res = self.highscore.path
         exp = "test_file.txt"
         self.assertEqual(res, exp)
         self.assertIsInstance(self.highscore, highscore.Highscore)
+        self.assertTrue(os.path.exists(self.highscore.path))
 
     def test_create_highscore_file(self):
         """Tests if highscore file is created."""
@@ -64,10 +71,12 @@ class TestHighscoreClass(unittest.TestCase):
 
     def test_add_highscore(self):
         """Test add player highscore to file."""
+        f = open(self.highscore.path, "w")
+        f.close()
         test_player = player.Player("Gimli")
         self.highscore.add_highscore(13, test_player.name)
         res = self.highscore.read_highscore()
-        exp = self.test_list
+        exp = []
         exp.append((13, "Gimli"))
         self.assertEqual(exp, res)
 

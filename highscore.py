@@ -1,4 +1,5 @@
 """Highscore Class."""
+import os
 
 
 class Highscore:
@@ -9,6 +10,9 @@ class Highscore:
     def __init__(self, path):
         """Set path to highscore_file."""
         self.path = path
+        if not os.path.exists(path):
+            f = open(path, "x")
+            f.close()
 
     @classmethod
     def sort_highscore(cls, highscore_list):
