@@ -42,7 +42,3 @@ class TestIntelligenceClass(unittest.TestCase):
         """Test match_point function."""
         self.assertEqual(intelligence.match_point, " has 1 card remaining")
         intelligence.Intelligence.match_point(self, intelligence.match_point)
-
-
-if __name__ == "__main__":
-    unittest.main()
