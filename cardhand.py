@@ -25,14 +25,21 @@ class Cardhand:
     def war(self):
         """Return cards for war."""
         face_down = []
-        if len(self.hand) > 5:
-            for i in range(3):
-                index = random.randint(0, len(self.hand) - 1)
+        for i in range(3):
+            index = random.randint(0, len(self.hand) - 1)
+            face_down.append(self.hand.pop(index))
+        face_up = self.hand.pop(random.randint(0, len(self.hand) - 1))
+        return face_down, face_up
+
+    def last_war(self):
+        """Last 4 cards of player"""
+        face_down = []
+        if self.cards_remaining() > 1:
+            face_up = self.hand.pop(random.randint(0, len(self.hand) - 1))
+            index = self.cards_remaining() - 1
+            while index >= 0:
                 face_down.append(self.hand.pop(index))
-            face_up = self.hand.pop(random.randint(0, len(self.hand) - 1))
+                index -= 1
         else:
-            face_up = self.hand.pop(random.randint(0, len(self.hand) - 1))
-            for card in self.hand:
-                face_down.append(card)
-                self.hand.remove(card)
+            face_up = self.hand.pop() 
         return face_down, face_up

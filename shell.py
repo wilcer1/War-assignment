@@ -4,6 +4,7 @@
 """Using cmd module and specifically cmdloop and a shell for main program."""
 
 import cmd
+import sys
 import game
 
 
@@ -51,14 +52,15 @@ class Shell(cmd.Cmd):
 
     def do_draw(self, _):
         """Draw a new card."""
-        if self.game.check_cards():
+        if self.game.check_for_winner():
+            print(f"It took {self.game.rounds} rounds")
+            sys.exit()
+        elif self.game.check_cards():
             self.game.war([])
-            if self.game.check_for_winner():
-                print(f"It took {self.game.rounds} rounds")
-
         else:
             p1_card, p2_card = self.game.draw()
             self.game.round_winner(p1_card, p2_card)
+            
 
     def do_exit(self, _):
         # pylint: disable=no-self-use
@@ -80,7 +82,12 @@ class Shell(cmd.Cmd):
         return self.do_exit(arg)
 
     def do_autodraw(self, _):
-        """Draw until 5 cards left."""
+        """Draw until end."""
         while not self.game.check_for_winner():
-            p1_card, p2_card = self.game.draw()
-            self.game.round_winner(p1_card, p2_card)
+            self.do_draw("draw")
+    
+    def do_highscore(self, _):
+        """Show highscore list."""
+        self.game.show_hiscore()
+
+    # def do_restart(self, _):
