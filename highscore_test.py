@@ -66,7 +66,7 @@ class TestHighscoreClass(unittest.TestCase):
         """Test add player highscore to file."""
         test_player = player.Player("Gimli")
         self.highscore.add_highscore(13, test_player.name)
-        res = self.highscore.read_highscore(self.highscore.path)
+        res = self.highscore.read_highscore()
         exp = self.test_list
         exp.append((13, "Gimli"))
         self.assertEqual(exp, res)
