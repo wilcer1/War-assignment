@@ -123,6 +123,18 @@ class TestGameClass(unittest.TestCase):
             or p_2.cardhand.cards_remaining() > p_1.cardhand.cards_remaining()
         self.assertTrue(exp)
 
+        p_1.cardhand.hand.clear()
+        cardlist = []
+        crd_1 = card.Card("Diamonds", 2)
+        crd_2 = card.Card("Diamonds", 5)
+        cardlist.append(crd_1)
+        cardlist.append(crd_2)
+        p_1.cardhand.recieve_cards(cardlist)
+        pre_war = p_1.cardhand.cards_remaining()
+        self.game.war([])
+        post_war = p_1.cardhand.cards_remaining()
+        self.assertNotEqual(pre_war, post_war)
+
     def test_check_cards(self):
         """Test check cards method."""
         self.game.set_player(1, "Wille")

@@ -1,5 +1,5 @@
 {
-    "python.pythonPath": "c:\\Users\\wille\\Documents\\GitHub\\War-assignment\\.venv\\Scripts\\python.exe",
+    "python.pythonPath": "C:\\Users\\wille\\AppData\\Local\\Programs\\Python\\Python39\\python.exe",
     "python.linting.flake8Enabled": true,
     "python.linting.enabled": true
 }

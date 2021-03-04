@@ -32,7 +32,7 @@ class Cardhand:
         return face_down, face_up
 
     def last_war(self):
-        """Last 4 cards of player"""
+        """Last 4 cards of player."""
         face_down = []
         if self.cards_remaining() > 1:
             face_up = self.hand.pop(random.randint(0, len(self.hand) - 1))
@@ -41,5 +41,5 @@ class Cardhand:
                 face_down.append(self.hand.pop(index))
                 index -= 1
         else:
-            face_up = self.hand.pop() 
+            face_up = self.hand.pop()
         return face_down, face_up

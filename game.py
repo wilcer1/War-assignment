@@ -100,8 +100,6 @@ class Game():
         else:
             self.war(winner_cards)
 
-
-
     def war(self, winner_cards):
         """War function."""
         if self.check_cards():
@@ -116,7 +114,7 @@ class Game():
             p2_face_down, p2_face_up = self.player2.cardhand.war()
 
         print("WAAAAAAR!!!")
-        
+
         winner_cards.append(p1_face_up)
         winner_cards.append(p2_face_up)
         for card in p1_face_down:
@@ -144,7 +142,7 @@ class Game():
             self.player2.cardhand.recieve_cards(winner_cards)
         else:
             print("Tie!!")
-            print(f"{p1_face_up.show()} is equal to {p2_face_up.show()}, time for war again!")
+            print(f"{p1_face_up.show()} is equal to {p2_face_up.show()}")
             self.war(winner_cards)
 
         print(f"{self.player1.name} cards remaining:\
@@ -165,7 +163,7 @@ class Game():
         """Check if anyone won."""
         if self.player1.cardhand.cards_remaining() == 0:
             print(f"{self.player2.name} wins")
-            if self.player2.name is not "Computer":
+            if self.player2.name != "Computer":
                 self.add_to_hiscore(self.player2.name)
             return True
         if self.player2.cardhand.cards_remaining() == 0:
@@ -175,13 +173,13 @@ class Game():
 
         return False
 
-
     def add_to_hiscore(self, player_name):
         """Add result to highscore."""
         hiscore = highscore.Highscore("highscore.txt")
         hiscore.add_highscore(self.rounds, player_name)
-    
+
     def show_hiscore(self):
+        """Print highscore list."""
         hiscore = highscore.Highscore("highscore.txt")
         hiscore_list = hiscore.show_highscore(hiscore.read_highscore())
         for result in hiscore_list:
