@@ -1,5 +1,9 @@
 {
+<<<<<<< Updated upstream
     "python.pythonPath": "C:\\Users\\wille\\AppData\\Local\\Programs\\Python\\Python39\\python.exe",
+=======
+    "python.pythonPath": "C:\\Users\\timmy\\AppData\\Local\\Programs\\Python\\Python39\\python.exe",
+>>>>>>> Stashed changes
     "python.linting.flake8Enabled": true,
     "python.linting.enabled": true
 }

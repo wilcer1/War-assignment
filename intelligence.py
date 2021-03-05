@@ -1,31 +1,36 @@
 """Intelligence class."""
 
-win = ", you are pro!"
-lose = "Better luck next time "
-start = "Good luck have fun!"
-war = "This is a war!"
-match_point = " has 1 card remaining"
+WIN = ", you are pro!"
+LOSE = "Better luck next time "
+START = "Good luck have fun!"
+WAR = "This is a war!"
+MATCH_POINT = " has 1 card remaining"
 
 
 class Intelligence():
     """Intelligence class."""
 
-    def win(self, win):
+    @classmethod
+    def win(cls):
         """Win function."""
-        print(win)
+        print(WIN)
 
-    def lose(self, lose):
+    @classmethod
+    def lose(cls):
         """Lose function."""
-        print(lose)
+        print(LOSE)
 
-    def start(self, start):
+    @classmethod
+    def start(cls):
         """Start function."""
-        print(start)
+        print(START)
 
-    def war(self, war):
+    @classmethod
+    def war(cls):
         """War function."""
-        print(war)
+        print(WAR)
 
-    def match_point(self, match_point):
+    @classmethod
+    def match_point(cls):
         """Match_point function."""
-        print(match_point)
+        print(MATCH_POINT)
