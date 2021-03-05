@@ -1,5 +1,6 @@
 """Test Highscore Class."""
 import unittest
+import os
 import highscore
 import player
 
@@ -16,6 +17,11 @@ class TestHighscoreClass(unittest.TestCase):
         self.test_list.append((2, "Joker"))
         self.test_list.append((3, "Robin"))
         self.test_list.append((4, "Batman"))
+
+    @classmethod
+    def tearDownClass(cls):
+        """Delete test_file.txt."""
+        os.remove("test_file.txt")
 
     def test_init_default_object(self):
         """Test class attribute."""
@@ -53,17 +59,23 @@ class TestHighscoreClass(unittest.TestCase):
 
         self.highscore.write_to_highscore(self.test_list)
 
-        with open("test_file.txt", "r") as test_file:
+        with open(self.highscore.path, "r") as test_file:
             res = []
             for line in test_file:
                 res.append(line)
+
         self.assertListEqual(res, exp)
 
     def test_read_highscore(self):
         """Test reading highscore and adding to list."""
+        self.highscore.write_to_highscore(self.test_list)
+        exp = self.test_list
+        res = self.highscore.read_highscore()
+        self.assertEqual(res, exp)
 
     def test_add_highscore(self):
         """Test add player highscore to file."""
+        self.highscore.write_to_highscore(self.test_list)
         test_player = player.Player("Gimli")
         self.highscore.add_highscore(13, test_player.name)
         res = self.highscore.read_highscore()

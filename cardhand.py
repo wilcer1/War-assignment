@@ -25,7 +25,7 @@ class Cardhand:
     def war(self):
         """Return cards for war."""
         face_down = []
-        for i in range(3):
+        for int in range(3):
             index = random.randint(0, len(self.hand) - 1)
             face_down.append(self.hand.pop(index))
         face_up = self.hand.pop(random.randint(0, len(self.hand) - 1))
@@ -40,6 +40,8 @@ class Cardhand:
             while index >= 0:
                 face_down.append(self.hand.pop(index))
                 index -= 1
-        else:
+        elif self.cards_remaining() == 1:
             face_up = self.hand.pop()
+        else:
+            return face_down, None
         return face_down, face_up

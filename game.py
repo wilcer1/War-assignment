@@ -18,6 +18,7 @@ class Game():
         self.player1 = None
         self.player2 = None
         self.rounds = 0
+        self.winner = None
 
     def set_player(self, playernum, name):
         """Create a player."""
@@ -30,6 +31,10 @@ class Game():
         elif playernum == 2:
             self.player2 = player.Player(name)
 
+    def set_player_name(self, new_name, player):
+        """Change the name of the player."""
+        player.name = new_name
+
     def get_players(self):
         """Return all players created."""
         return self.player1, self.player2
@@ -39,8 +44,6 @@ class Game():
         self.rounds = 0
         # If player 2 is not set, create new
         # instance with name computer
-        if self.player1 is None and self.player2 is None:
-            return "Create player(s) first"
 
         if self.player2 is None:
             self.player2 = player.Player("Computer")
@@ -84,81 +87,86 @@ class Game():
         if card1_value > card2_value:
             self.player1.cardhand.recieve_cards(winner_cards)
             print("------------------------------------------------")
-            print(f"""{self.player1.name} wins!\n{card1.show()} beats
-                 {card2.show()}""")
-            print(f"""{self.player1.name} cards remaining:
-                 {self.player1.cardhand.cards_remaining()}""")
-            print(f"""{self.player2.name} cards remaining:
-                 {self.player2.cardhand.cards_remaining()}""")
+            print(f"{self.player1.name} wins!\n{card1.show()} beats "
+                  + f"{card2.show()}")
+            print(f"{self.player1.name} cards remaining: "
+                  + f"{self.player1.cardhand.cards_remaining()}")
+            print(f"{self.player2.name} cards remaining: "
+                  + f"{self.player2.cardhand.cards_remaining()}")
             print("------------------------------------------------")
         elif card1_value < card2_value:
             self.player2.cardhand.recieve_cards(winner_cards)
             print("------------------------------------------------")
-            print(f"""{self.player2.name} wins!\n{card2.show()} beats
-                 {card1.show()}""")
-            print(f"""{self.player1.name} cards remaining:
-                 {self.player1.cardhand.cards_remaining()}""")
-            print(f"""{self.player2.name} cards remaining:
-                 {self.player2.cardhand.cards_remaining()}""")
+            print(f"{self.player2.name} wins!\n{card2.show()} beats "
+                  + f"{card1.show()}")
+            print(f"{self.player1.name} cards remaining: "
+                  + f"{self.player1.cardhand.cards_remaining()}")
+            print(f"{self.player2.name} cards remaining: "
+                  + f"{self.player2.cardhand.cards_remaining()}")
             print("------------------------------------------------")
         else:
             self.war(winner_cards)
 
     def war(self, winner_cards):
         """War function."""
-        if self.check_cards():
-            if self.player1.cardhand.cards_remaining() <= 4:
-                p1_face_down, p1_face_up = self.player1.cardhand.last_war()
-                p2_face_down, p2_face_up = self.player2.cardhand.war()
-            elif self.player2.cardhand.cards_remaining() <= 4:
-                p2_face_down, p2_face_up = self.player2.cardhand.last_war()
+        if not self.check_for_winner():
+            if self.check_cards():
+                if self.player1.cardhand.cards_remaining() <= 4:
+                    p1_face_down, p1_face_up = self.player1.cardhand.last_war()
+                    p2_face_down, p2_face_up = self.player2.cardhand.war()
+                elif self.player2.cardhand.cards_remaining() <= 4:
+                    p2_face_down, p2_face_up = self.player2.cardhand.last_war()
+                    p1_face_down, p1_face_up = self.player1.cardhand.war()
+            else:
                 p1_face_down, p1_face_up = self.player1.cardhand.war()
-        else:
-            p1_face_down, p1_face_up = self.player1.cardhand.war()
-            p2_face_down, p2_face_up = self.player2.cardhand.war()
+                p2_face_down, p2_face_up = self.player2.cardhand.war()
 
-        print("WAAAAAAR!!!")
+            print("WAAAAAAR!!!")
 
-        winner_cards.append(p1_face_up)
-        winner_cards.append(p2_face_up)
-        for card in p1_face_down:
-            winner_cards.append(card)
-        for card in p2_face_down:
-            winner_cards.append(card)
-        if isinstance(p1_face_up.value, tuple):
-            p1_face_up_value = p1_face_up.get_value_dressed()
-        else:
-            p1_face_up_value = p1_face_up.value
-        if isinstance(p2_face_up.value, tuple):
-            p2_face_up_value = p2_face_up.get_value_dressed()
-        else:
-            p2_face_up_value = p2_face_up.value
+            winner_cards.append(p1_face_up)
+            winner_cards.append(p2_face_up)
+            for card in p1_face_down:
+                winner_cards.append(card)
+            for card in p2_face_down:
+                winner_cards.append(card)
+            if isinstance(p1_face_up.value, tuple):
+                p1_face_up_value = p1_face_up.get_value_dressed()
+            else:
+                p1_face_up_value = p1_face_up.value
+            if isinstance(p2_face_up.value, tuple):
+                p2_face_up_value = p2_face_up.get_value_dressed()
+            else:
+                p2_face_up_value = p2_face_up.value
 
-        if p1_face_up_value > p2_face_up_value:
-            print("------------------------------------------------")
-            print(f"""{self.player1.name} Wins!\n{p1_face_up.show()} beats
-                {p2_face_up.show()}!""")
-            print(f"All {len(winner_cards)} cards go to {self.player1.name}")
-            self.player1.cardhand.recieve_cards(winner_cards)
-            print("------------------------------------------------")
-        elif p2_face_up_value > p1_face_up_value:
-            print("------------------------------------------------")
-            print(f"""{self.player2.name} Wins!\n{p2_face_up.show()} beats
-                {p1_face_up.show()}!""")
-            print(f"All {len(winner_cards)} cards go to {self.player2.name}")
-            self.player2.cardhand.recieve_cards(winner_cards)
-            print("------------------------------------------------")
+            if p1_face_up_value > p2_face_up_value:
+                print("------------------------------------------------")
+                print(f"{self.player1.name} wins!\n{p1_face_up.show()} beats "
+                      + f"{p2_face_up.show()}")
+                print(f"All {len(winner_cards)} cards go to "
+                      + f"{self.player1.name}")
+                self.player1.cardhand.recieve_cards(winner_cards)
+                print("------------------------------------------------")
+            elif p2_face_up_value > p1_face_up_value:
+                print("------------------------------------------------")
+                print(f"{self.player2.name} wins!\n{p2_face_up.show()} beats "
+                      + f"{p1_face_up.show()}")
+                print(f"All {len(winner_cards)} cards go to "
+                      + f"{self.player2.name}")
+                self.player2.cardhand.recieve_cards(winner_cards)
+                print("------------------------------------------------")
+            else:
+                print("------------------------------------------------")
+                print("Tie!!")
+                print(f"{p1_face_up.show()} is equal to {p2_face_up.show()}")
+                print("------------------------------------------------")
+                self.war(winner_cards)
         else:
-            print("------------------------------------------------")
-            print("Tie!!")
-            print(f"{p1_face_up.show()} is equal to {p2_face_up.show()}")
-            print("------------------------------------------------")
-            self.war(winner_cards)
+            self.winner.cardhand.recieve_cards(winner_cards)
 
-        print(f"""{self.player1.name} cards remaining:
-             {self.player1.cardhand.cards_remaining()}""")
-        print(f"""{self.player2.name} cards remaining:
-             {self.player2.cardhand.cards_remaining()}""")
+        print(f"{self.player1.name} cards remaining: "
+              + f"{self.player1.cardhand.cards_remaining()}")
+        print(f"{self.player2.name} cards remaining: "
+              + f"{self.player2.cardhand.cards_remaining()}")
 
     def check_cards(self):
         """Check if players have less than or 4 cards."""
@@ -171,11 +179,13 @@ class Game():
         """Check if anyone won."""
         if self.player1.cardhand.cards_remaining() == 0:
             print(f"{self.player2.name} wins")
+            self.winner = self.player2
             if self.player2.name != "Computer":
                 self.add_to_hiscore(self.player2.name)
             return True
         if self.player2.cardhand.cards_remaining() == 0:
             print(f"{self.player1.name} wins")
+            self.winner = self.player1
             self.add_to_hiscore(self.player1.name)
             return True
 
