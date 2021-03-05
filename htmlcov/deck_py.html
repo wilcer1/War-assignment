@@ -57,8 +57,8 @@
     <p id="t3" class="pln"><span class="n"><a href="#t3">3</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t4" class="run"><span class="n"><a href="#t4">4</a></span><span class="t"><span class="str">"""Import cards to use in deck."""</span>&nbsp;</span><span class="r"></span></p>
     <p id="t5" class="pln"><span class="n"><a href="#t5">5</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p id="t6" class="run"><span class="n"><a href="#t6">6</a></span><span class="t"><span class="key">import</span> <span class="nam">card</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t7" class="run"><span class="n"><a href="#t7">7</a></span><span class="t"><span class="key">import</span> <span class="nam">random</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t6" class="run"><span class="n"><a href="#t6">6</a></span><span class="t"><span class="key">import</span> <span class="nam">random</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t7" class="run"><span class="n"><a href="#t7">7</a></span><span class="t"><span class="key">import</span> <span class="nam">card</span>&nbsp;</span><span class="r"></span></p>
     <p id="t8" class="pln"><span class="n"><a href="#t8">8</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t9" class="pln"><span class="n"><a href="#t9">9</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t10" class="run"><span class="n"><a href="#t10">10</a></span><span class="t"><span class="key">class</span> <span class="nam">Deck</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
@@ -71,9 +71,9 @@
     <p id="t17" class="pln"><span class="n"><a href="#t17">17</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t18" class="run"><span class="n"><a href="#t18">18</a></span><span class="t">    <span class="key">def</span> <span class="nam">build_deck</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p id="t19" class="pln"><span class="n"><a href="#t19">19</a></span><span class="t">        <span class="str">"""Build the deck using a nested for loop to avoid duplicates."""</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t20" class="run"><span class="n"><a href="#t20">20</a></span><span class="t">        <span class="key">for</span> <span class="nam">s</span> <span class="key">in</span> <span class="nam">self</span><span class="op">.</span><span class="nam">suits</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t21" class="run"><span class="n"><a href="#t21">21</a></span><span class="t">            <span class="key">for</span> <span class="nam">v</span> <span class="key">in</span> <span class="nam">range</span><span class="op">(</span><span class="num">2</span><span class="op">,</span> <span class="num">15</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t22" class="run"><span class="n"><a href="#t22">22</a></span><span class="t">                <span class="nam">self</span><span class="op">.</span><span class="nam">deck</span><span class="op">.</span><span class="nam">append</span><span class="op">(</span><span class="nam">card</span><span class="op">.</span><span class="nam">Card</span><span class="op">(</span><span class="nam">s</span><span class="op">,</span> <span class="nam">v</span><span class="op">)</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t20" class="run"><span class="n"><a href="#t20">20</a></span><span class="t">        <span class="key">for</span> <span class="nam">suit</span> <span class="key">in</span> <span class="nam">self</span><span class="op">.</span><span class="nam">suits</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t21" class="run"><span class="n"><a href="#t21">21</a></span><span class="t">            <span class="key">for</span> <span class="nam">value</span> <span class="key">in</span> <span class="nam">range</span><span class="op">(</span><span class="num">2</span><span class="op">,</span> <span class="num">15</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t22" class="run"><span class="n"><a href="#t22">22</a></span><span class="t">                <span class="nam">self</span><span class="op">.</span><span class="nam">deck</span><span class="op">.</span><span class="nam">append</span><span class="op">(</span><span class="nam">card</span><span class="op">.</span><span class="nam">Card</span><span class="op">(</span><span class="nam">suit</span><span class="op">,</span> <span class="nam">value</span><span class="op">)</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p id="t23" class="pln"><span class="n"><a href="#t23">23</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t24" class="run"><span class="n"><a href="#t24">24</a></span><span class="t">    <span class="key">def</span> <span class="nam">get_deck</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p id="t25" class="pln"><span class="n"><a href="#t25">25</a></span><span class="t">        <span class="str">"""Return deck attribute."""</span>&nbsp;</span><span class="r"></span></p>
@@ -96,7 +96,7 @@
     <div class="content">
         <p>
             <a class="nav" href="index.html">&#xab; index</a> &nbsp; &nbsp; <a class="nav" href="https://coverage.readthedocs.io">coverage.py v5.4</a>,
-            created at 2021-03-02 11:20 +0100
+            created at 2021-03-05 14:53 +0100
         </p>
     </div>
 </div>
