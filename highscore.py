@@ -11,8 +11,8 @@ class Highscore:
         """Set path to highscore_file."""
         self.path = path
         if not os.path.exists(path):
-            f = open(path, "x")
-            f.close()
+            create = open(path, "x")
+            create.close()
 
     @classmethod
     def sort_highscore(cls, highscore_list):
