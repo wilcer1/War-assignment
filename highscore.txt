@@ -1,9 +1,3 @@
-0:Timmy
-0:Timmy
-0:Timmy
-0:Wille
-0:Wille
-0:Wille
 29:Wille
 46:Wille
 86:Timmy
@@ -11,6 +5,7 @@
 139:Lucas
 147:WIlle
 150:w
+160:Wille
 161:w
 240:w
 332:l
@@ -32,4 +27,4 @@
 1989:w
 4777:L
 22334:L
-160:Wille
+484:Wille
