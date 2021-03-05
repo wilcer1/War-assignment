@@ -1,5 +1,6 @@
 """Test Highscore Class."""
 import unittest
+import os
 import highscore
 import player
 
@@ -17,11 +18,10 @@ class TestHighscoreClass(unittest.TestCase):
         self.test_list.append((3, "Robin"))
         self.test_list.append((4, "Batman"))
 
-        self.unsorted_test_list = []
-        self.unsorted_test_list.append((2, "Joker"))
-        self.unsorted_test_list.append((4, "Batman"))
-        self.unsorted_test_list.append((1, "Bane"))
-        self.unsorted_test_list.append((3, "Robin"))
+    @classmethod
+    def tearDownClass(cls):
+        """Delete test_file.txt."""
+        os.remove("test_file.txt")
 
     def test_init_default_object(self):
         """Test class attribute."""
@@ -41,8 +41,14 @@ class TestHighscoreClass(unittest.TestCase):
 
     def test_sort_highscore(self):
         """Test if sort method works as intended."""
+        unsorted_test_list = []
+        unsorted_test_list.append((2, "Joker"))
+        unsorted_test_list.append((4, "Batman"))
+        unsorted_test_list.append((1, "Bane"))
+        unsorted_test_list.append((3, "Robin"))
+
         exp = self.test_list
-        res = self.highscore.sort_highscore(self.unsorted_test_list)
+        res = self.highscore.sort_highscore(unsorted_test_list)
         self.assertListEqual(exp, res)
 
     def test_write_to_highscore(self):
@@ -62,13 +68,14 @@ class TestHighscoreClass(unittest.TestCase):
 
     def test_read_highscore(self):
         """Test reading highscore and adding to list."""
-        self.highscore.write_to_highscore(self.unsorted_test_list)
+        self.highscore.write_to_highscore(self.test_list)
         exp = self.test_list
         res = self.highscore.read_highscore()
         self.assertEqual(res, exp)
 
     def test_add_highscore(self):
         """Test add player highscore to file."""
+        self.highscore.write_to_highscore(self.test_list)
         test_player = player.Player("Gimli")
         self.highscore.add_highscore(13, test_player.name)
         res = self.highscore.read_highscore()
