@@ -17,6 +17,12 @@ class TestHighscoreClass(unittest.TestCase):
         self.test_list.append((3, "Robin"))
         self.test_list.append((4, "Batman"))
 
+        self.unsorted_test_list = []
+        self.unsorted_test_list.append((2, "Joker"))
+        self.unsorted_test_list.append((4, "Batman"))
+        self.unsorted_test_list.append((1, "Bane"))
+        self.unsorted_test_list.append((3, "Robin"))
+
     def test_init_default_object(self):
         """Test class attribute."""
         res = self.highscore.path
@@ -35,14 +41,8 @@ class TestHighscoreClass(unittest.TestCase):
 
     def test_sort_highscore(self):
         """Test if sort method works as intended."""
-        unsorted_test_list = []
-        unsorted_test_list.append((2, "Joker"))
-        unsorted_test_list.append((4, "Batman"))
-        unsorted_test_list.append((1, "Bane"))
-        unsorted_test_list.append((3, "Robin"))
-
         exp = self.test_list
-        res = self.highscore.sort_highscore(unsorted_test_list)
+        res = self.highscore.sort_highscore(self.unsorted_test_list)
         self.assertListEqual(exp, res)
 
     def test_write_to_highscore(self):
@@ -53,14 +53,19 @@ class TestHighscoreClass(unittest.TestCase):
 
         self.highscore.write_to_highscore(self.test_list)
 
-        with open("test_file.txt", "r") as test_file:
+        with open(self.highscore.path, "r") as test_file:
             res = []
             for line in test_file:
                 res.append(line)
+
         self.assertListEqual(res, exp)
 
     def test_read_highscore(self):
         """Test reading highscore and adding to list."""
+        self.highscore.write_to_highscore(self.unsorted_test_list)
+        exp = self.test_list
+        res = self.highscore.read_highscore()
+        self.assertEqual(res, exp)
 
     def test_add_highscore(self):
         """Test add player highscore to file."""
