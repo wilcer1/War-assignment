@@ -54,6 +54,14 @@ class TestGameClass(unittest.TestCase):
         exp = "Timmy"
         self.assertEqual(exp, res)
 
+    def test_set_player_name(self):
+        """Test if method changes player name."""
+        self.game.set_player(1, "Wille")
+        p_1 = self.game.player1
+        exp = "Lucas"
+        self.game.set_player_name("Lucas", p_1)
+        self.assertEqual(exp, p_1.name)
+
     def test_start(self):
         """Test start method."""
         res = self.game.start()

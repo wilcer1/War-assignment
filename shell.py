@@ -45,7 +45,7 @@ class Shell(cmd.Cmd):
     def do_start(self, _):
         """Start the game and deal the deck."""
         if self.game.player1 is None:
-            print(self.game.start())
+            print("Create atleast one player first")
         else:
             self.game.start()
             print("Deck has been dealt, type draw to draw card")
@@ -88,3 +88,15 @@ class Shell(cmd.Cmd):
     def do_highscore(self, _):
         """Show highscore list."""
         self.game.show_hiscore()
+
+    def do_change_name(self, _):
+        """Change name of player if player exists."""
+        old_name = input("Enter your current name: ")
+        if old_name == self.game.player1.name:
+            new_name = input("Enter your desired name: ")
+            self.game.set_player_name(new_name, self.game.player1)
+        elif old_name == self.game.player2.name:
+            new_name = input("Enter your desired name: ")
+            self.game.set_player_name(new_name, self.game.player2)
+        else:
+            print("No such player")

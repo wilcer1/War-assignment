@@ -31,6 +31,10 @@ class Game():
         elif playernum == 2:
             self.player2 = player.Player(name)
 
+    def set_player_name(self, new_name, player):
+        """Change the name of the player."""
+        player.name = new_name
+
     def get_players(self):
         """Return all players created."""
         return self.player1, self.player2
@@ -40,8 +44,6 @@ class Game():
         self.rounds = 0
         # If player 2 is not set, create new
         # instance with name computer
-        if self.player1 is None and self.player2 is None:
-            return "Create player(s) first"
 
         if self.player2 is None:
             self.player2 = player.Player("Computer")
@@ -139,15 +141,17 @@ class Game():
             if p1_face_up_value > p2_face_up_value:
                 print("------------------------------------------------")
                 print(f"{self.player1.name} wins!\n{p1_face_up.show()} beats "
-                    + f"{p2_face_up.show()}")
-                print(f"All {len(winner_cards)} cards go to {self.player1.name}")
+                      + f"{p2_face_up.show()}")
+                print(f"All {len(winner_cards)} cards go to "
+                      + f"{self.player1.name}")
                 self.player1.cardhand.recieve_cards(winner_cards)
                 print("------------------------------------------------")
             elif p2_face_up_value > p1_face_up_value:
                 print("------------------------------------------------")
                 print(f"{self.player2.name} wins!\n{p2_face_up.show()} beats "
-                    + f"{p1_face_up.show()}")
-                print(f"All {len(winner_cards)} cards go to {self.player2.name}")
+                      + f"{p1_face_up.show()}")
+                print(f"All {len(winner_cards)} cards go to "
+                      + f"{self.player2.name}")
                 self.player2.cardhand.recieve_cards(winner_cards)
                 print("------------------------------------------------")
             else:

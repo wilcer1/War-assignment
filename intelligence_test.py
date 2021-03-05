@@ -36,10 +36,7 @@ class TestIntelligenceClass(unittest.TestCase):
 
     def test_match_point(self):
         """Test match_point function."""
-<<<<<<< Updated upstream
         self.assertEqual(intelligence.match_point, " has 1 card remaining")
         intelligence.Intelligence.match_point(self, intelligence.match_point)
-=======
         self.assertEqual(intelligence.MATCH_POINT, " has 1 card remaining")
         intelligence.Intelligence.match_point()
->>>>>>> Stashed changes
