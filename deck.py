@@ -3,8 +3,8 @@
 
 """Import cards to use in deck."""
 
-import card
 import random
+import card
 
 
 class Deck:

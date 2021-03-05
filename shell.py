@@ -60,7 +60,6 @@ class Shell(cmd.Cmd):
         else:
             p1_card, p2_card = self.game.draw()
             self.game.round_winner(p1_card, p2_card)
-            
 
     def do_exit(self, _):
         # pylint: disable=no-self-use
@@ -85,9 +84,7 @@ class Shell(cmd.Cmd):
         """Draw until end."""
         while not self.game.check_for_winner():
             self.do_draw("draw")
-    
+
     def do_highscore(self, _):
         """Show highscore list."""
         self.game.show_hiscore()
-
-    # def do_restart(self, _):

@@ -19,8 +19,8 @@ class Cardhand:
 
     def recieve_cards(self, cards):
         """Add recieved cards to hand."""
-        for c in cards:
-            self.hand.append(c)
+        for card in cards:
+            self.hand.append(card)
 
     def war(self):
         """Return cards for war."""

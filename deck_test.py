@@ -11,6 +11,14 @@ import card
 class TestGameClass(unittest.TestCase):
     """Test deck class."""
 
+    def setUp(self):
+        """Set up the deck instance."""
+        self.deck = deck.Deck()
+
+    def tearDown(self):
+        """Delete instance after use."""
+        del self.deck
+
     def test_init_default_object(self):
         """Instantiate an object and check its properties."""
         res = deck.Deck()
@@ -19,15 +27,14 @@ class TestGameClass(unittest.TestCase):
 
     def test_build_deck(self):
         """Check if the build deck method creates a correct deck."""
-        self.deck = deck.Deck()
         suits = ["Clubs", "Spades", "Hearts", "Diamonds"]
 
         self.deck.build_deck()
         res_list = self.deck.deck
         exp_list = []
-        for s in suits:
-            for v in range(2, 15):
-                exp_list.append(card.Card(s, v))
+        for suit in suits:
+            for value in range(2, 15):
+                exp_list.append(card.Card(suit, value))
         index = 0
 
         for i in exp_list:
@@ -40,7 +47,6 @@ class TestGameClass(unittest.TestCase):
 
     def test_get_deck(self):
         """Return deck and compare to attribute."""
-        self.deck = deck.Deck()
         self.deck.build_deck()
 
         res = self.deck.get_deck()
@@ -52,14 +58,13 @@ class TestGameClass(unittest.TestCase):
 
     def test_shuffle_deck(self):
         """Test the shuffle method to see if it really shuffles."""
-        self.deck = deck.Deck()
         self.deck.build_deck()
 
         sorted_deck = []
         suits = ["Clubs", "Spades", "Hearts", "Diamonds"]
-        for s in suits:
-            for v in range(2, 15):
-                sorted_deck.append(card.Card(s, v))
+        for suit in suits:
+            for value in range(2, 15):
+                sorted_deck.append(card.Card(suit, value))
         self.deck.shuffle_deck()
 
         duplicates = 0
@@ -71,7 +76,6 @@ class TestGameClass(unittest.TestCase):
 
     def test_deal_deck(self):
         """Test so the deck deals correctly between players."""
-        self.deck = deck.Deck()
         self.deck.build_deck()
         self.deck.shuffle_deck()
         res = self.deck.deal_deck()

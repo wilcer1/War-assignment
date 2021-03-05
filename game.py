@@ -152,12 +152,10 @@ class Game():
 
     def check_cards(self):
         """Check if players have less than or 4 cards."""
-        if self.player1.cardhand.cards_remaining() <= 4:
+        if self.player1.cardhand.cards_remaining() <= 4 or\
+                self.player2.cardhand.cards_remaining() <= 4:
             return True
-        if self.player2.cardhand.cards_remaining() <= 4:
-            return True
-        else:
-            return False
+        return False
 
     def check_for_winner(self):
         """Check if anyone won."""
@@ -178,7 +176,8 @@ class Game():
         hiscore = highscore.Highscore("highscore.txt")
         hiscore.add_highscore(self.rounds, player_name)
 
-    def show_hiscore(self):
+    @classmethod
+    def show_hiscore(cls):
         """Print highscore list."""
         hiscore = highscore.Highscore("highscore.txt")
         hiscore_list = hiscore.show_highscore(hiscore.read_highscore())
