@@ -25,12 +25,14 @@ class Shell(cmd.Cmd):
         if not isinstance(players, int):
             raise TypeError("1 or 2 allowed")
         if players not in range(1, 3):
-            raise ValueError("Only 1 or 2 players allowed")
+            print("You can only be 1 or 2 players")
+            self.do_player("player")
         if players == 1:
             name = input("Enter your name: ")
             if not isinstance(name, str):
                 raise TypeError("Must be a string")
             self.game.set_player(1, name)
+            print("Player(s) created, type start to start the game")
         elif players == 2:
             name = input("Enter Player 1's name: ")
             if not isinstance(name, str):
@@ -40,7 +42,7 @@ class Shell(cmd.Cmd):
                 raise TypeError("Must be a string")
             self.game.set_player(1, name)
             self.game.set_player(2, name2)
-        print("Player(s) created, type start to start the game")
+            print("Player(s) created, type start to start the game")
 
     def do_start(self, _):
         """Start the game and deal the deck."""
