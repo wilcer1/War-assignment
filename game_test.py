@@ -64,10 +64,6 @@ class TestGameClass(unittest.TestCase):
 
     def test_start(self):
         """Test start method."""
-        res = self.game.start()
-        exp = "Create player(s) first"
-        self.assertEqual(exp, res)
-
         self.game.set_player(1, "Wille")
         self.game.start()
         p_1, p_2 = self.game.get_players()
@@ -141,6 +137,14 @@ class TestGameClass(unittest.TestCase):
         pre_war = p_1.cardhand.cards_remaining()
         self.game.war([])
         post_war = p_1.cardhand.cards_remaining()
+        self.assertNotEqual(pre_war, post_war)
+
+        self.game.start()
+        p_2.cardhand.hand.clear()
+        p_2.cardhand.recieve_cards(cardlist)
+        pre_war = p_2.cardhand.cards_remaining()
+        self.game.war([])
+        post_war = p_2.cardhand.cards_remaining()
         self.assertNotEqual(pre_war, post_war)
 
     def test_check_cards(self):

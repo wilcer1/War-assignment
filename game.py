@@ -7,6 +7,7 @@ import random
 import deck
 import player
 import highscore
+import intelligence
 
 
 class Game():

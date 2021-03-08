@@ -64,3 +64,15 @@ class TestDiceClass(unittest.TestCase):
 
         res = tot_res[1]
         self.assertIsInstance(res, card.Card)
+
+    def test_last_war(self):
+        """Test the last war method."""
+        crd = card.Card("Diamonds", 2)
+        self.cardhand.hand.append(crd)
+        res1, res2 = self.cardhand.last_war()
+        self.assertEqual(len(res1), 0)
+        self.assertIsInstance(res2, card.Card)
+
+        res1, res2 = self.cardhand.last_war()
+        self.assertEqual(len(res1), 0)
+        self.assertEqual(res2, None)
