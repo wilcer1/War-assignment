@@ -92,6 +92,10 @@ class TestHighscoreClass(unittest.TestCase):
 
         self.assertEqual(res, exp)
 
+        res = self.highscore.show_highscore((self.test_list * 6))
+
+        self.assertTrue(len(res) == 20)
+
 
 if __name__ == "__main__":
     unittest.main()

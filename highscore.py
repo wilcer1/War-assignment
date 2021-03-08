@@ -52,6 +52,7 @@ class Highscore:
         """Show highscore."""
         show_list = []
         for count, (score, name) in enumerate(highscore_list, 1):
-            show_list.append((f"{count}. {name} won in {score} rounds."))
+            if count <= 20:
+                show_list.append((f"{count}. {name} won in {score} rounds."))
 
         return show_list
