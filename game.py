@@ -21,6 +21,7 @@ class Game():
         self.player2 = None
         self.rounds = 0
         self.winner = None
+        self.started = False
 
     def set_player(self, playernum, name):
         """Create a player."""
@@ -44,6 +45,8 @@ class Game():
     def start(self):
         """Create, shuffle and deal deck evenly."""
         self.rounds = 0
+        self.started = True
+        self.winner = None
         # If player 2 is not set, create new
         # instance with name computer
 
@@ -59,6 +62,8 @@ class Game():
         self.player2.cardhand.hand.clear()
         self.player1.cardhand.recieve_cards(decksplit[0])
         self.player2.cardhand.recieve_cards(decksplit[1])
+        print("Deck has been dealt, type draw to draw card ;)")
+        self.intelligence.start()
 
     def draw(self):
         """Draw cards and return them."""
@@ -104,9 +109,11 @@ class Game():
                 if self.player1.cardhand.cards_remaining() <= 4:
                     p1_face_down, p1_face_up = self.player1.cardhand.last_war()
                     p2_face_down, p2_face_up = self.player2.cardhand.war()
+                    self.intelligence.match_point(self.player1)
                 elif self.player2.cardhand.cards_remaining() <= 4:
                     p2_face_down, p2_face_up = self.player2.cardhand.last_war()
                     p1_face_down, p1_face_up = self.player1.cardhand.war()
+                    self.intelligence.match_point(self.player2)
             else:
                 p1_face_down, p1_face_up = self.player1.cardhand.war()
                 p2_face_down, p2_face_up = self.player2.cardhand.war()
@@ -156,19 +163,25 @@ class Game():
 
     def check_for_winner(self):
         """Check if anyone won."""
-        if self.player1.cardhand.cards_remaining() == 0:
-            print(f"{self.player2.name} wins")
-            self.winner = self.player2
-            if self.player2.name != "Computer" and self.rounds != 0:
-                self.add_to_hiscore(self.player2.name)
-            return True
-        if self.player2.cardhand.cards_remaining() == 0 and self.rounds != 0:
-            print(f"{self.player1.name} wins")
-            self.winner = self.player1
-            self.add_to_hiscore(self.player1.name)
-            return True
-
-        return False
+        if self.winner is None:
+            if self.player1.cardhand.cards_remaining() == 0:
+                print(f"{self.player2.name} wins")
+                self.winner = self.player2
+                if self.player2.name != "Computer" and self.rounds != 0:
+                    self.add_to_hiscore(self.player2.name)
+                self.started = False
+                print(f"It took {self.rounds} rounds")
+                return True
+            if self.player2.cardhand.cards_remaining() == 0 and self.rounds != 0:
+                print(f"{self.player1.name} wins")
+                self.winner = self.player1
+                self.add_to_hiscore(self.player1.name)
+                self.started = False
+                print(f"It took {self.rounds} rounds")
+                return True
+        else:
+            print("Game already over, type 'start' to redeal the deck")
+            return False
 
     def add_to_hiscore(self, player_name):
         """Add result to highscore."""
@@ -180,5 +193,7 @@ class Game():
         """Print highscore list."""
         hiscore = highscore.Highscore("highscore.txt")
         hiscore_list = hiscore.show_highscore(hiscore.read_highscore())
+        print("------------------------------------------------")
         for result in hiscore_list:
             print(result)
+        print("------------------------------------------------")

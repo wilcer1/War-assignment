@@ -4,7 +4,6 @@
 """Using cmd module and specifically cmdloop and a shell for main program."""
 
 import cmd
-import sys
 import game
 
 
@@ -54,25 +53,25 @@ class Shell(cmd.Cmd):
 
     def do_start(self, _):
         """Start the game and deal the deck."""
-        if self.game.player1 is None:
-            print("Create atleast one player first, type 'player'")
+        if not self.game.started:
+            if self.game.player1 is None:
+                print("Create at least one player first, type 'player'")
+            else:
+                self.game.start()
         else:
-            self.game.start()
-            print("Deck has been dealt, type draw to draw card")
+            print("Game already started, type 'draw' to draw card")
 
     def do_draw(self, _):
         """Draw a new card."""
-        if len(self.game.deck.deck) == 0:
+        if not self.game.started:
             print("You need to start the game first, type 'start'")
         else:
-            if self.game.check_for_winner():
-                print(f"It took {self.game.rounds} rounds")
-                sys.exit()
-            elif self.game.check_cards():
-                self.game.war([])
-            else:
-                p1_card, p2_card = self.game.draw()
-                self.game.round_winner(p1_card, p2_card)
+            if not self.game.check_for_winner():
+                if self.game.check_cards():
+                    self.game.war([])
+                else:
+                    p1_card, p2_card = self.game.draw()
+                    self.game.round_winner(p1_card, p2_card)
 
     def do_exit(self, _):
         # pylint: disable=no-self-use
@@ -95,7 +94,7 @@ class Shell(cmd.Cmd):
 
     def do_autodraw(self, _):
         """Draw until end."""
-        if len(self.game.deck.deck) == 0:
+        if not self.game.started:
             print("You need to start the game first, type 'start'")
         else:
             while not self.game.check_for_winner():
@@ -107,12 +106,17 @@ class Shell(cmd.Cmd):
 
     def do_change_name(self, _):
         """Change name of player if player exists."""
-        old_name = input("Enter your current name: ")
-        if old_name == self.game.player1.name:
-            new_name = input("Enter your desired name: ")
-            self.game.set_player_name(new_name, self.game.player1)
-        elif old_name == self.game.player2.name:
-            new_name = input("Enter your desired name: ")
-            self.game.set_player_name(new_name, self.game.player2)
+        if self.game.player1 is None and self.game.player2 is None:
+            print("No players created")
         else:
-            print("No such player")
+            old_name = input("Enter your current name: ")
+            if old_name == self.game.player1.name:
+                new_name = input("Enter your desired name: ")
+                self.game.set_player_name(new_name, self.game.player1)
+                print(f"Name changed from {old_name} to {new_name}")
+            elif old_name == self.game.player2.name:
+                new_name = input("Enter your desired name: ")
+                self.game.set_player_name(new_name, self.game.player2)
+                print(f"Name changed from {old_name} to {new_name}")
+            else:
+                print("No such player")

@@ -4,7 +4,7 @@ WIN = "You are pro!"
 LOSE = "Better luck next time, human trash. AI will prevail! "
 START = "Good luck have fun!"
 WAR = "This is a war!"
-MATCH_POINT = " has 1 card remaining"
+MATCH_POINT = " has few cards remaining"
 
 
 class Intelligence():
@@ -93,6 +93,6 @@ class Intelligence():
         print("------------------------------------------------")
 
     @classmethod
-    def match_point(cls):
+    def match_point(cls, player):
         """Match_point function."""
-        print(MATCH_POINT)
+        print(player.name, MATCH_POINT)
