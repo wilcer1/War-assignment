@@ -32,7 +32,7 @@ class TestIntelligenceClass(unittest.TestCase):
     def test_war(self):
         """Test war function."""
         self.assertEqual(intelligence.WAR, "This is a war!")
-        intelligence.Intelligence.war() 
+        intelligence.Intelligence.war()
 
     def test_match_point(self):
         """Test match_point function."""

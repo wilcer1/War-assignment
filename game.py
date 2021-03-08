@@ -16,6 +16,7 @@ class Game():
     def __init__(self):
         """Instantiate deck instance."""
         self.deck = deck.Deck()
+        self.intelligence = intelligence.Intelligence()
         self.player1 = None
         self.player2 = None
         self.rounds = 0
@@ -48,6 +49,8 @@ class Game():
 
         if self.player2 is None:
             self.player2 = player.Player("Computer")
+
+        self.intelligence.recieve_players(self.player1, self.player2)
 
         self.deck.build_deck()
         self.deck.shuffle_deck()
@@ -87,24 +90,10 @@ class Game():
 
         if card1_value > card2_value:
             self.player1.cardhand.recieve_cards(winner_cards)
-            print("------------------------------------------------")
-            print(f"{self.player1.name} wins!\n{card1.show()} beats "
-                  + f"{card2.show()}")
-            print(f"{self.player1.name} cards remaining: "
-                  + f"{self.player1.cardhand.cards_remaining()}")
-            print(f"{self.player2.name} cards remaining: "
-                  + f"{self.player2.cardhand.cards_remaining()}")
-            print("------------------------------------------------")
+            self.intelligence.card_1_win(card1, card2)
         elif card1_value < card2_value:
             self.player2.cardhand.recieve_cards(winner_cards)
-            print("------------------------------------------------")
-            print(f"{self.player2.name} wins!\n{card2.show()} beats "
-                  + f"{card1.show()}")
-            print(f"{self.player1.name} cards remaining: "
-                  + f"{self.player1.cardhand.cards_remaining()}")
-            print(f"{self.player2.name} cards remaining: "
-                  + f"{self.player2.cardhand.cards_remaining()}")
-            print("------------------------------------------------")
+            self.intelligence.card_2_win(card1, card2)
         else:
             self.war(winner_cards)
 
@@ -122,7 +111,7 @@ class Game():
                 p1_face_down, p1_face_up = self.player1.cardhand.war()
                 p2_face_down, p2_face_up = self.player2.cardhand.war()
 
-            print("WAAAAAAR!!!")
+            self.intelligence.war()
 
             winner_cards.append(p1_face_up)
             winner_cards.append(p2_face_up)
@@ -140,26 +129,15 @@ class Game():
                 p2_face_up_value = p2_face_up.value
 
             if p1_face_up_value > p2_face_up_value:
-                print("------------------------------------------------")
-                print(f"{self.player1.name} wins!\n{p1_face_up.show()} beats "
-                      + f"{p2_face_up.show()}")
-                print(f"All {len(winner_cards)} cards go to "
-                      + f"{self.player1.name}")
                 self.player1.cardhand.recieve_cards(winner_cards)
-                print("------------------------------------------------")
+                self.intelligence.war_card_1_win(p1_face_up, p2_face_up,
+                                                 winner_cards)
             elif p2_face_up_value > p1_face_up_value:
-                print("------------------------------------------------")
-                print(f"{self.player2.name} wins!\n{p2_face_up.show()} beats "
-                      + f"{p1_face_up.show()}")
-                print(f"All {len(winner_cards)} cards go to "
-                      + f"{self.player2.name}")
                 self.player2.cardhand.recieve_cards(winner_cards)
-                print("------------------------------------------------")
+                self.intelligence.war_card_2_win(p1_face_up, p2_face_up,
+                                                 winner_cards)
             else:
-                print("------------------------------------------------")
-                print("Tie!!")
-                print(f"{p1_face_up.show()} is equal to {p2_face_up.show()}")
-                print("------------------------------------------------")
+                self.intelligence.war_tie(p1_face_up, p2_face_up)
                 self.war(winner_cards)
         else:
             self.winner.cardhand.recieve_cards(winner_cards)
@@ -181,10 +159,10 @@ class Game():
         if self.player1.cardhand.cards_remaining() == 0:
             print(f"{self.player2.name} wins")
             self.winner = self.player2
-            if self.player2.name != "Computer":
+            if self.player2.name != "Computer" and self.rounds != 0:
                 self.add_to_hiscore(self.player2.name)
             return True
-        if self.player2.cardhand.cards_remaining() == 0:
+        if self.player2.cardhand.cards_remaining() == 0 and self.rounds != 0:
             print(f"{self.player1.name} wins")
             self.winner = self.player1
             self.add_to_hiscore(self.player1.name)
