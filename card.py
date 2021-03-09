@@ -31,4 +31,4 @@ class Card():
         """Return cardvalue integer only if card is dressed."""
         if isinstance(self.value, tuple):
             return self.value[1]
-        raise TypeError("Card is not dressed")
+        return self.value
