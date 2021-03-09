@@ -21,35 +21,39 @@ class Shell(cmd.Cmd):
 
     def do_player(self, _):
         """Create player(s)."""
-        try:
-            self.players = int(input("1 or 2 players? "))
-        except ValueError:
-            print("Only 1 or 2 allowed ")
-            self.do_player("player")
-        else:
-            if self.players not in range(1, 3):
-                print("You can only be 1 or 2 players ")
+        if self.game.player1 is None and\
+                self.game.player2 is None:
+            try:
+                self.players = int(input("1 or 2 players? "))
+            except ValueError:
+                print("Only 1 or 2 allowed ")
                 self.do_player("player")
-        if self.players == 1:
-            name = input("Enter your name: ")
-            self.game.set_player(1, name)
-            print("Player(s) created, type start to start the game")
-            self.players = 0
-        elif self.players == 2:
-            name = input("Enter Player 1's name: ")
-            while not isinstance(name, str):
-                print("Name must be a string")
-                name = input("Enter player 1's name: ")
+            else:
+                if self.players not in range(1, 3):
+                    print("You can only be 1 or 2 players ")
+                    self.do_player("player")
+            if self.players == 1:
+                name = input("Enter your name: ")
+                self.game.set_player(1, name)
+                print("Player(s) created, type start to start the game")
+                self.players = 0
+            elif self.players == 2:
+                name = input("Enter Player 1's name: ")
+                while not isinstance(name, str):
+                    print("Name must be a string")
+                    name = input("Enter player 1's name: ")
 
-            name2 = input("Enter Player 2's name: ")
-            while not isinstance(name2, str):
-                print("Name must be a string")
-                name = input("Enter player 2's name: ")
-            self.players = 0
+                name2 = input("Enter Player 2's name: ")
+                while not isinstance(name2, str):
+                    print("Name must be a string")
+                    name = input("Enter player 2's name: ")
+                self.players = 0
 
-            self.game.set_player(1, name)
-            self.game.set_player(2, name2)
-            print("Player(s) created, type start to start the game")
+                self.game.set_player(1, name)
+                self.game.set_player(2, name2)
+                print("Player(s) created, type start to start the game")
+        else:
+            print("Players already created. Type 'change_name' to change name")
 
     def do_start(self, _):
         """Start the game and deal the deck."""
