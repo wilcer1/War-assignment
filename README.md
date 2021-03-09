@@ -5,7 +5,7 @@ A02 Sustainable programming
 This game is developed by Lucas Carlsson, Timmy Bergvall and Wille Cervin.
 
 # Before playing the game!
-Bofore running the game install playsound by writing "pip install playsoud" in the directory where the game is placed.
+Bofore running the game install playsound by writing "pip install playsound" in the directory where the game is placed.
 
 # How to run the game
 This is an alternative way to run the program!
