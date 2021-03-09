@@ -8,6 +8,7 @@ import deck
 import player
 import highscore
 import intelligence
+from playsound import playsound
 
 
 class Game():
@@ -166,6 +167,7 @@ class Game():
         if self.winner is None:
             if self.player1.cardhand.cards_remaining() == 0:
                 print(f"{self.player2.name} wins")
+                playsound("win.mp3")
                 self.winner = self.player2
                 if self.player2.name != "Computer" and self.rounds != 0:
                     self.add_to_hiscore(self.player2.name)
@@ -174,6 +176,7 @@ class Game():
                 return True
             if self.player2.cardhand.cards_remaining() == 0 and self.rounds != 0:
                 print(f"{self.player1.name} wins")
+                playsound("win.mp3")
                 self.winner = self.player1
                 self.add_to_hiscore(self.player1.name)
                 self.started = False

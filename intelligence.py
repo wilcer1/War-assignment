@@ -1,5 +1,7 @@
 """Intelligence class."""
 
+from playsound import playsound
+
 WIN = "You are pro!"
 LOSE = "Better luck next time, human trash. AI will prevail! "
 START = "Good luck have fun!"
@@ -79,11 +81,14 @@ class Intelligence():
     def lose(cls):
         """Lose function."""
         print(LOSE)
+        playsound("lose.mp3")
 
     @classmethod
     def start(cls):
         """Start function."""
         print(START)
+        playsound("start.mp3")
+        
 
     @classmethod
     def war(cls):
@@ -96,3 +101,4 @@ class Intelligence():
     def match_point(cls, player):
         """Match_point function."""
         print(player.name, MATCH_POINT)
+        playsound("match_point.mp3")
