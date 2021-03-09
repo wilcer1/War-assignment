@@ -9,7 +9,7 @@ Bofore running the game install playsound by writing "pip install playsound" in 
 
 # How to run the game
 This is an alternative way to run the program!
-1. Open gitbash and make sure that you are in the dirictory where the game is placed
+1. Open gitbash and make sure that you are in the directory where the game is placed
 2. Write the following command; "Python main.py"
 3. Write "player" and choose between 1 or 2 players by typing "1" or "2"
 4. Enter the name for your player
