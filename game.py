@@ -4,7 +4,6 @@
 """Game class with logic."""
 
 import random
-from playsound import playsound
 import deck
 import player
 import highscore
