@@ -124,3 +124,7 @@ class Shell(cmd.Cmd):
                 print(f"Name changed from {old_name} to {new_name}")
             else:
                 print("No such player")
+
+    def do_restart(self, _):
+        """Redeal the deck."""
+        self.do_start("start")

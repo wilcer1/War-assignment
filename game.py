@@ -168,7 +168,8 @@ class Game():
         if self.winner is None:
             if self.player1.cardhand.cards_remaining() == 0:
                 print("------------------------------------------------")
-                print(f"{self.player2.name} wins the game!")
+                print(f"{self.player2.name} wins the game!\nType 'Restart'"
+                      + " to restart the game")
                 self.winner = self.player2
                 if self.player2.name != "Computer" and self.rounds != 0:
                     playsound("win.mp3")
@@ -179,7 +180,8 @@ class Game():
             if self.player2.cardhand.cards_remaining() == 0 and\
                     self.rounds != 0:
                 print("------------------------------------------------")
-                print(f"{self.player1.name} wins the game!")
+                print(f"{self.player1.name} wins the game!\nType 'Restart'"
+                      + " to restart the game")
                 playsound("win.mp3")
                 self.winner = self.player1
                 self.add_to_hiscore(self.player1.name)
@@ -187,7 +189,7 @@ class Game():
                 print(f"It took {self.rounds} rounds")
                 return True
         else:
-            print("Game already over, type 'start' to redeal the deck")
+            print("Game already over, type 'restart' to redeal the deck")
             return False
 
     def add_to_hiscore(self, player_name):
