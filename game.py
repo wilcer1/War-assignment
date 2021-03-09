@@ -167,7 +167,8 @@ class Game():
         """Check if anyone won."""
         if self.winner is None:
             if self.player1.cardhand.cards_remaining() == 0:
-                print(f"{self.player2.name} wins")
+                print("------------------------------------------------")
+                print(f"{self.player2.name} wins the game!")
                 self.winner = self.player2
                 if self.player2.name != "Computer" and self.rounds != 0:
                     playsound("win.mp3")
@@ -177,7 +178,8 @@ class Game():
                 return True
             if self.player2.cardhand.cards_remaining() == 0 and\
                     self.rounds != 0:
-                print(f"{self.player1.name} wins")
+                print("------------------------------------------------")
+                print(f"{self.player1.name} wins the game!")
                 playsound("win.mp3")
                 self.winner = self.player1
                 self.add_to_hiscore(self.player1.name)
