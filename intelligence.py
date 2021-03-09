@@ -70,7 +70,8 @@ class Intelligence():
               + f"{self.player2.name}")
         print("------------------------------------------------")
 
-    def war_tie(self, card1, card2):
+    @classmethod
+    def war_tie(cls, card1, card2):
         """Print if war is tie."""
         print("------------------------------------------------")
         print("Tie!!")
@@ -88,7 +89,6 @@ class Intelligence():
         """Start function."""
         print(START)
         playsound("start.mp3")
-        
 
     @classmethod
     def war(cls):
