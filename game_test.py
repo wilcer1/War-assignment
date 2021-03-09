@@ -176,6 +176,13 @@ class TestGameClass(unittest.TestCase):
         self.assertTrue(self.game.check_for_winner())
         crd = card.Card("Diamonds", 5)
         p_1.cardhand.hand.append(crd)
+        self.game.rounds = 1
+        self.game.winner = None
         self.assertTrue(self.game.check_for_winner())
-        p_2.cardhand.hand.append(crd)
+        self.game.rounds = 0
         self.assertFalse(self.game.check_for_winner())
+
+        p_1.cardhand.hand.clear()
+        p_2.cardhand.hand.append(crd)
+        self.game.winner = None
+        self.assertTrue(self.game.check_for_winner())

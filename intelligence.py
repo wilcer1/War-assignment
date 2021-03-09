@@ -72,7 +72,8 @@ class Intelligence:
         print(f"All {len(winner_cards)} cards go to " + f"{self.player2.name}")
         print("------------------------------------------------")
 
-    def war_tie(self, card1, card2):
+    @classmethod
+    def war_tie(cls, card1, card2):
         """Print if war is tie."""
         print("------------------------------------------------")
         print("Tie!!")

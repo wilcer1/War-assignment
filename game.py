@@ -4,11 +4,11 @@
 """Game class with logic."""
 
 import random
+from playsound import playsound
 import deck
 import player
 import highscore
 import intelligence
-from playsound import playsound
 
 
 class Game():
@@ -35,7 +35,8 @@ class Game():
         elif playernum == 2:
             self.player2 = player.Player(name)
 
-    def set_player_name(self, new_name, player):
+    @classmethod
+    def set_player_name(cls, new_name, player):
         """Change the name of the player."""
         player.name = new_name
 
@@ -174,7 +175,8 @@ class Game():
                 self.started = False
                 print(f"It took {self.rounds} rounds")
                 return True
-            if self.player2.cardhand.cards_remaining() == 0 and self.rounds != 0:
+            if self.player2.cardhand.cards_remaining() == 0 and\
+                    self.rounds != 0:
                 print(f"{self.player1.name} wins")
                 playsound("win.mp3")
                 self.winner = self.player1
