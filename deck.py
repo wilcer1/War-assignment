@@ -33,7 +33,7 @@ class Deck:
         """Distribute deck evenly."""
         player1 = []
         player2 = []
-        for i in range(0, int(len(self.deck)/2)):
+        for _i in range(0, int(len(self.deck)/2)):
             player1.append(self.deck.pop())
             player2.append(self.deck.pop())
         return player1, player2

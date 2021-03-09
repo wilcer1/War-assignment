@@ -36,9 +36,9 @@ class Game():
             self.player2 = player.Player(name)
 
     @classmethod
-    def set_player_name(cls, new_name, player):
+    def set_player_name(cls, new_name, gamer):
         """Change the name of the player."""
-        player.name = new_name
+        gamer.name = new_name
 
     def get_players(self):
         """Return all players created."""
