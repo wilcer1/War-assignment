@@ -1,6 +1,7 @@
 """Test intelligence class."""
 
 import unittest
+import io
 import intelligence
 import player
 
