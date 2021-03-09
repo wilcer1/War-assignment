@@ -108,3 +108,10 @@ class Intelligence:
         """Match_point function."""
         print(player.name, MATCH_POINT)
         playsound("match_point.mp3")
+
+    @classmethod
+    def win(cls, player):
+        """win function."""
+        print("------------------------------------------------")
+        print(f"{player.name} wins the game!\nType 'Restart' to restart the game")
+        playsound("win.mp3")
