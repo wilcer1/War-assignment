@@ -13,3 +13,6 @@ radon
 # Documentation
 pdoc3
 sphinx
+
+# Game
+playsound
