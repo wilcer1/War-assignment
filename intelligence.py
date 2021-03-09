@@ -25,7 +25,8 @@ class Intelligence:
     def card_1_win(self, card1, card2):
         """Print when card 1 wins."""
         print("------------------------------------------------")
-        print(f"{self.player1.name} wins!\n{card1.show()} beats " + f"{card2.show()}")
+        print(f"{self.player1.name} wins!\n{card1.show()} beats "
+              + f"{card2.show()}")
         print(
             f"{self.player1.name} cards remaining: "
             + f"{self.player1.cardhand.cards_remaining()}"
@@ -43,7 +44,8 @@ class Intelligence:
     def card_2_win(self, card1, card2):
         """Print when card 2 wins."""
         print("------------------------------------------------")
-        print(f"{self.player2.name} wins!\n{card2.show()} beats " + f"{card1.show()}")
+        print(f"{self.player2.name} wins!\n{card2.show()} beats "
+              + f"{card1.show()}")
         print(
             f"{self.player1.name} cards remaining: "
             + f"{self.player1.cardhand.cards_remaining()}"
@@ -61,14 +63,16 @@ class Intelligence:
     def war_card_1_win(self, card1, card2, winner_cards):
         """Print when card1 wins war."""
         print("------------------------------------------------")
-        print(f"{self.player1.name} wins!\n{card1.show()} beats " + f"{card2.show()}")
+        print(f"{self.player1.name} wins!\n{card1.show()} beats "
+              + f"{card2.show()}")
         print(f"All {len(winner_cards)} cards go to " + f"{self.player1.name}")
         print("------------------------------------------------")
 
     def war_card_2_win(self, card1, card2, winner_cards):
         """Print when card2 wins war."""
         print("------------------------------------------------")
-        print(f"{self.player2.name} wins!\n{card2.show()} beats " + f"{card1.show()}")
+        print(f"{self.player2.name} wins!\n{card2.show()} beats "
+              + f"{card1.show()}")
         print(f"All {len(winner_cards)} cards go to " + f"{self.player2.name}")
         print("------------------------------------------------")
 
