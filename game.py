@@ -189,9 +189,10 @@ class Game():
             return False
 
     def add_to_hiscore(self, player_name):
-        """Add result to highscore."""
+        """Add result to highscore txt."""
         hiscore = highscore.Highscore("highscore.txt")
-        hiscore.add_highscore(self.rounds, player_name)
+        if self.rounds > 1:
+            hiscore.add_highscore(self.rounds, player_name)
 
     @classmethod
     def show_hiscore(cls):

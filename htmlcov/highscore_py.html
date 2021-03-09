@@ -22,8 +22,8 @@
         </h1>
         <img id="keyboard_icon" src="keybd_closed.png" alt="Show keyboard shortcuts" />
         <h2 class="stats">
-            37 statements &nbsp;
-            <button type="button" class="run shortkey_r button_toggle_run" title="Toggle lines run">37 run</button>
+            38 statements &nbsp;
+            <button type="button" class="run shortkey_r button_toggle_run" title="Toggle lines run">38 run</button>
             <button type="button" class="mis show_mis shortkey_m button_toggle_mis" title="Toggle lines missing">0 missing</button>
             <button type="button" class="exc show_exc shortkey_x button_toggle_exc" title="Toggle lines excluded">0 excluded</button>
         </h2>
@@ -106,15 +106,16 @@
     <p id="t52" class="pln"><span class="n"><a href="#t52">52</a></span><span class="t">        <span class="str">"""Show highscore."""</span>&nbsp;</span><span class="r"></span></p>
     <p id="t53" class="run"><span class="n"><a href="#t53">53</a></span><span class="t">        <span class="nam">show_list</span> <span class="op">=</span> <span class="op">[</span><span class="op">]</span>&nbsp;</span><span class="r"></span></p>
     <p id="t54" class="run"><span class="n"><a href="#t54">54</a></span><span class="t">        <span class="key">for</span> <span class="nam">count</span><span class="op">,</span> <span class="op">(</span><span class="nam">score</span><span class="op">,</span> <span class="nam">name</span><span class="op">)</span> <span class="key">in</span> <span class="nam">enumerate</span><span class="op">(</span><span class="nam">highscore_list</span><span class="op">,</span> <span class="num">1</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t55" class="run"><span class="n"><a href="#t55">55</a></span><span class="t">            <span class="nam">show_list</span><span class="op">.</span><span class="nam">append</span><span class="op">(</span><span class="op">(</span><span class="str">f"{count}. {name} won in {score} rounds."</span><span class="op">)</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t56" class="pln"><span class="n"><a href="#t56">56</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p id="t57" class="run"><span class="n"><a href="#t57">57</a></span><span class="t">        <span class="key">return</span> <span class="nam">show_list</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t55" class="run"><span class="n"><a href="#t55">55</a></span><span class="t">            <span class="key">if</span> <span class="nam">count</span> <span class="op">&lt;=</span> <span class="num">20</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t56" class="run"><span class="n"><a href="#t56">56</a></span><span class="t">                <span class="nam">show_list</span><span class="op">.</span><span class="nam">append</span><span class="op">(</span><span class="op">(</span><span class="str">f"{count}. {name} won in {score} rounds."</span><span class="op">)</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t57" class="pln"><span class="n"><a href="#t57">57</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p id="t58" class="run"><span class="n"><a href="#t58">58</a></span><span class="t">        <span class="key">return</span> <span class="nam">show_list</span>&nbsp;</span><span class="r"></span></p>
 </div>
 <div id="footer">
     <div class="content">
         <p>
             <a class="nav" href="index.html">&#xab; index</a> &nbsp; &nbsp; <a class="nav" href="https://coverage.readthedocs.io">coverage.py v5.4</a>,
-            created at 2021-03-05 14:53 +0100
+            created at 2021-03-09 13:54 +0100
         </p>
     </div>
 </div>

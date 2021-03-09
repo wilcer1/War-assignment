@@ -13,7 +13,8 @@ Rules:
    and their final card competes against the other player's fourth card.
    Continue doing this until tie is broken.
    Winner takes all cards.
-   If the last card of one's deck is tied with the other, the player with most cards win.
+   If the last card of one's deck is tied with the other,
+   the player with most cards win.
 4. Game is over when a player doesn't have any cards. The player with
    cards remaining is the winner.
 
