@@ -20,7 +20,8 @@ class TestIntelligenceClass(unittest.TestCase):
     def test_lose(self):
         """Test lose function."""
         self.assertEqual(
-            intelligence.LOSE, "Better luck next time, human trash. AI will prevail! "
+            intelligence.LOSE,
+            "Better luck next time, human trash. AI will prevail! "
         )
 
     def test_start(self):
