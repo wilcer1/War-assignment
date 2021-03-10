@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <title>game.py</title>
+  <link rel="stylesheet" href="pycco.css">
+</head>
+<body>
+<div id='container'>
+  <div id="background"></div>
+  <div class='section'>
+    <div class='docs'><h1>game.py</h1></div>
+  </div>
+  <div class='clearall'>
+  <div class='section' id='section-0'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-0'>#</a>
+      </div>
+      <p>!/usr/bin/env python3
+Game class with logic.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span></span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-1'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-1'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">deck</span>
+<span class="kn">import</span> <span class="nn">player</span>
+<span class="kn">import</span> <span class="nn">highscore</span>
+<span class="kn">import</span> <span class="nn">intelligence</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-2'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-2'>#</a>
+      </div>
+      <p>Handle all the logic and get called by shell.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">class</span> <span class="nc">Game</span><span class="p">():</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-3'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-3'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-4'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-4'>#</a>
+      </div>
+      <p>Instantiate deck instance.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-5'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-5'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="bp">self</span><span class="o">.</span><span class="n">deck</span> <span class="o">=</span> <span class="n">deck</span><span class="o">.</span><span class="n">Deck</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">intelligence</span> <span class="o">=</span> <span class="n">intelligence</span><span class="o">.</span><span class="n">Intelligence</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">player1</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">player2</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rounds</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">winner</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">started</span> <span class="o">=</span> <span class="kc">False</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-6'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-6'>#</a>
+      </div>
+      <p>Create a player.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">set_player</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">playernum</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-7'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-7'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="k">if</span> <span class="n">playernum</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Maximum of 2 players&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Name must be string&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">playernum</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">player1</span> <span class="o">=</span> <span class="n">player</span><span class="o">.</span><span class="n">Player</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">playernum</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">player2</span> <span class="o">=</span> <span class="n">player</span><span class="o">.</span><span class="n">Player</span><span class="p">(</span><span class="n">name</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-8'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-8'>#</a>
+      </div>
+      <p>Change the name of the player.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">set_player_name</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">new_name</span><span class="p">,</span> <span class="n">gamer</span><span class="p">):</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-9'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-9'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="n">gamer</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">new_name</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-10'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-10'>#</a>
+      </div>
+      <p>Return all players created.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">get_players</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-11'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-11'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">player1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">player2</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-12'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-12'>#</a>
+      </div>
+      <p>Create, shuffle and deal deck evenly.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-13'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-13'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="bp">self</span><span class="o">.</span><span class="n">rounds</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">started</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">winner</span> <span class="o">=</span> <span class="kc">None</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-14'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-14'>#</a>
+      </div>
+      <p>If player 2 is not set, create new
+instance with name computer</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">player2</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">player2</span> <span class="o">=</span> <span class="n">player</span><span class="o">.</span><span class="n">Player</span><span class="p">(</span><span class="s2">&quot;Computer&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">intelligence</span><span class="o">.</span><span class="n">recieve_players</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">player1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">player2</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">deck</span><span class="o">.</span><span class="n">build_deck</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">deck</span><span class="o">.</span><span class="n">shuffle_deck</span><span class="p">()</span>
+        <span class="n">decksplit</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">deck</span><span class="o">.</span><span class="n">deal_deck</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">player1</span><span class="o">.</span><span class="n">cardhand</span><span class="o">.</span><span class="n">hand</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">player2</span><span class="o">.</span><span class="n">cardhand</span><span class="o">.</span><span class="n">hand</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">player1</span><span class="o">.</span><span class="n">cardhand</span><span class="o">.</span><span class="n">recieve_cards</span><span class="p">(</span><span class="n">decksplit</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">player2</span><span class="o">.</span><span class="n">cardhand</span><span class="o">.</span><span class="n">recieve_cards</span><span class="p">(</span><span class="n">decksplit</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Deck has been dealt, type draw to draw card ;)&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">intelligence</span><span class="o">.</span><span class="n">start</span><span class="p">()</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-15'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-15'>#</a>
+      </div>
+      <p>Draw cards and return them.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">draw</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-16'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-16'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">player1</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">player2</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;Create player(s) and start game first&quot;</span>
+
+        <span class="n">p1_cards</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">player1</span><span class="o">.</span><span class="n">cardhand</span><span class="o">.</span><span class="n">cards_remaining</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="n">p2_cards</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">player2</span><span class="o">.</span><span class="n">cardhand</span><span class="o">.</span><span class="n">cards_remaining</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="n">p1_int</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="n">p1_cards</span><span class="p">))</span>
+        <span class="n">p1_card</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">player1</span><span class="o">.</span><span class="n">cardhand</span><span class="o">.</span><span class="n">hand</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">p1_int</span><span class="p">)</span>
+        <span class="n">p2_int</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="n">p2_cards</span><span class="p">))</span>
+        <span class="n">p2_card</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">player2</span><span class="o">.</span><span class="n">cardhand</span><span class="o">.</span><span class="n">hand</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">p2_int</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">p1_card</span><span class="p">,</span> <span class="n">p2_card</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-17'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-17'>#</a>
+      </div>
+      <p>Give cards to winner, if equal call war, return string.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">round_winner</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">card1</span><span class="p">,</span> <span class="n">card2</span><span class="p">):</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-18'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-18'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="bp">self</span><span class="o">.</span><span class="n">rounds</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">winner_cards</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">winner_cards</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">card1</span><span class="p">)</span>
+        <span class="n">winner_cards</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">card2</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">card1</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
+            <span class="n">card1_value</span> <span class="o">=</span> <span class="n">card1</span><span class="o">.</span><span class="n">get_value_dressed</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">card1_value</span> <span class="o">=</span> <span class="n">card1</span><span class="o">.</span><span class="n">value</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">card2</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
+            <span class="n">card2_value</span> <span class="o">=</span> <span class="n">card2</span><span class="o">.</span><span class="n">get_value_dressed</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">card2_value</span> <span class="o">=</span> <span class="n">card2</span><span class="o">.</span><span class="n">value</span>
+
+        <span class="k">if</span> <span class="n">card1_value</span> <span class="o">&gt;</span> <span class="n">card2_value</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">player1</span><span class="o">.</span><span class="n">cardhand</span><span class="o">.</span><span class="n">recieve_cards</span><span class="p">(</span><span class="n">winner_cards</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">intelligence</span><span class="o">.</span><span class="n">card_1_win</span><span class="p">(</span><span class="n">card1</span><span class="p">,</span> <span class="n">card2</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">card1_value</span> <span class="o">&lt;</span> <span class="n">card2_value</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">player2</span><span class="o">.</span><span class="n">cardhand</span><span class="o">.</span><span class="n">recieve_cards</span><span class="p">(</span><span class="n">winner_cards</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">intelligence</span><span class="o">.</span><span class="n">card_2_win</span><span class="p">(</span><span class="n">card1</span><span class="p">,</span> <span class="n">card2</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">war</span><span class="p">(</span><span class="n">winner_cards</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-19'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-19'>#</a>
+      </div>
+      <p>War function.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">war</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">winner_cards</span><span class="p">):</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-20'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-20'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">check_for_winner</span><span class="p">():</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">check_cards</span><span class="p">():</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">player1</span><span class="o">.</span><span class="n">cardhand</span><span class="o">.</span><span class="n">cards_remaining</span><span class="p">()</span> <span class="o">&lt;=</span> <span class="mi">4</span><span class="p">:</span>
+                    <span class="n">p1_face_down</span><span class="p">,</span> <span class="n">p1_face_up</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">player1</span><span class="o">.</span><span class="n">cardhand</span><span class="o">.</span><span class="n">last_war</span><span class="p">()</span>
+                    <span class="n">p2_face_down</span><span class="p">,</span> <span class="n">p2_face_up</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">player2</span><span class="o">.</span><span class="n">cardhand</span><span class="o">.</span><span class="n">war</span><span class="p">()</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">intelligence</span><span class="o">.</span><span class="n">match_point</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">player1</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">player2</span><span class="o">.</span><span class="n">cardhand</span><span class="o">.</span><span class="n">cards_remaining</span><span class="p">()</span> <span class="o">&lt;=</span> <span class="mi">4</span><span class="p">:</span>
+                    <span class="n">p2_face_down</span><span class="p">,</span> <span class="n">p2_face_up</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">player2</span><span class="o">.</span><span class="n">cardhand</span><span class="o">.</span><span class="n">last_war</span><span class="p">()</span>
+                    <span class="n">p1_face_down</span><span class="p">,</span> <span class="n">p1_face_up</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">player1</span><span class="o">.</span><span class="n">cardhand</span><span class="o">.</span><span class="n">war</span><span class="p">()</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">intelligence</span><span class="o">.</span><span class="n">match_point</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">player2</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">p1_face_down</span><span class="p">,</span> <span class="n">p1_face_up</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">player1</span><span class="o">.</span><span class="n">cardhand</span><span class="o">.</span><span class="n">war</span><span class="p">()</span>
+                <span class="n">p2_face_down</span><span class="p">,</span> <span class="n">p2_face_up</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">player2</span><span class="o">.</span><span class="n">cardhand</span><span class="o">.</span><span class="n">war</span><span class="p">()</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">intelligence</span><span class="o">.</span><span class="n">war</span><span class="p">()</span>
+
+            <span class="n">winner_cards</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p1_face_up</span><span class="p">)</span>
+            <span class="n">winner_cards</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p2_face_up</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">card</span> <span class="ow">in</span> <span class="n">p1_face_down</span><span class="p">:</span>
+                <span class="n">winner_cards</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">card</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">card</span> <span class="ow">in</span> <span class="n">p2_face_down</span><span class="p">:</span>
+                <span class="n">winner_cards</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">card</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">p1_face_up</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
+                <span class="n">p1_face_up_value</span> <span class="o">=</span> <span class="n">p1_face_up</span><span class="o">.</span><span class="n">get_value_dressed</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">p1_face_up_value</span> <span class="o">=</span> <span class="n">p1_face_up</span><span class="o">.</span><span class="n">value</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">p2_face_up</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
+                <span class="n">p2_face_up_value</span> <span class="o">=</span> <span class="n">p2_face_up</span><span class="o">.</span><span class="n">get_value_dressed</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">p2_face_up_value</span> <span class="o">=</span> <span class="n">p2_face_up</span><span class="o">.</span><span class="n">value</span>
+
+            <span class="k">if</span> <span class="n">p1_face_up_value</span> <span class="o">&gt;</span> <span class="n">p2_face_up_value</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">player1</span><span class="o">.</span><span class="n">cardhand</span><span class="o">.</span><span class="n">recieve_cards</span><span class="p">(</span><span class="n">winner_cards</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">intelligence</span><span class="o">.</span><span class="n">war_card_1_win</span><span class="p">(</span><span class="n">p1_face_up</span><span class="p">,</span> <span class="n">p2_face_up</span><span class="p">,</span>
+                                                 <span class="n">winner_cards</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">p2_face_up_value</span> <span class="o">&gt;</span> <span class="n">p1_face_up_value</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">player2</span><span class="o">.</span><span class="n">cardhand</span><span class="o">.</span><span class="n">recieve_cards</span><span class="p">(</span><span class="n">winner_cards</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">intelligence</span><span class="o">.</span><span class="n">war_card_2_win</span><span class="p">(</span><span class="n">p1_face_up</span><span class="p">,</span> <span class="n">p2_face_up</span><span class="p">,</span>
+                                                 <span class="n">winner_cards</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">intelligence</span><span class="o">.</span><span class="n">war_tie</span><span class="p">(</span><span class="n">p1_face_up</span><span class="p">,</span> <span class="n">p2_face_up</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">war</span><span class="p">(</span><span class="n">winner_cards</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">winner</span><span class="o">.</span><span class="n">cardhand</span><span class="o">.</span><span class="n">recieve_cards</span><span class="p">(</span><span class="n">winner_cards</span><span class="p">)</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">player1</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> cards remaining: &quot;</span>
+              <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">player1</span><span class="o">.</span><span class="n">cardhand</span><span class="o">.</span><span class="n">cards_remaining</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">player2</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> cards remaining: &quot;</span>
+              <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">player2</span><span class="o">.</span><span class="n">cardhand</span><span class="o">.</span><span class="n">cards_remaining</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-21'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-21'>#</a>
+      </div>
+      <p>Check if players have less than or 4 cards.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">check_cards</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-22'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-22'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">player1</span><span class="o">.</span><span class="n">cardhand</span><span class="o">.</span><span class="n">cards_remaining</span><span class="p">()</span> <span class="o">&lt;=</span> <span class="mi">4</span> <span class="ow">or</span>\
+                <span class="bp">self</span><span class="o">.</span><span class="n">player2</span><span class="o">.</span><span class="n">cardhand</span><span class="o">.</span><span class="n">cards_remaining</span><span class="p">()</span> <span class="o">&lt;=</span> <span class="mi">4</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">return</span> <span class="kc">False</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-23'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-23'>#</a>
+      </div>
+      <p>Check if anyone won.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">check_for_winner</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-24'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-24'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">winner</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">player1</span><span class="o">.</span><span class="n">cardhand</span><span class="o">.</span><span class="n">cards_remaining</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">intelligence</span><span class="o">.</span><span class="n">win</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">player2</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">winner</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">player2</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">player2</span><span class="o">.</span><span class="n">name</span> <span class="o">!=</span> <span class="s2">&quot;Computer&quot;</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">rounds</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">add_to_hiscore</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">player2</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">started</span> <span class="o">=</span> <span class="kc">False</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;It took </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">rounds</span><span class="si">}</span><span class="s2"> rounds&quot;</span><span class="p">)</span>
+                <span class="k">return</span> <span class="kc">True</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">player2</span><span class="o">.</span><span class="n">cardhand</span><span class="o">.</span><span class="n">cards_remaining</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span>\
+                    <span class="bp">self</span><span class="o">.</span><span class="n">rounds</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">intelligence</span><span class="o">.</span><span class="n">win</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">player1</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">winner</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">player1</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">add_to_hiscore</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">player1</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">started</span> <span class="o">=</span> <span class="kc">False</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;It took </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">rounds</span><span class="si">}</span><span class="s2"> rounds&quot;</span><span class="p">)</span>
+                <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Game already over, type &#39;restart&#39; to redeal the deck&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-25'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-25'>#</a>
+      </div>
+      <p>Add result to highscore txt.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">add_to_hiscore</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">player_name</span><span class="p">):</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-26'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-26'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="n">hiscore</span> <span class="o">=</span> <span class="n">highscore</span><span class="o">.</span><span class="n">Highscore</span><span class="p">(</span><span class="s2">&quot;highscore.txt&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">rounds</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">hiscore</span><span class="o">.</span><span class="n">add_highscore</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rounds</span><span class="p">,</span> <span class="n">player_name</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-27'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-27'>#</a>
+      </div>
+      <p>Print highscore list.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">show_hiscore</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-28'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-28'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="n">hiscore</span> <span class="o">=</span> <span class="n">highscore</span><span class="o">.</span><span class="n">Highscore</span><span class="p">(</span><span class="s2">&quot;highscore.txt&quot;</span><span class="p">)</span>
+        <span class="n">hiscore_list</span> <span class="o">=</span> <span class="n">hiscore</span><span class="o">.</span><span class="n">show_highscore</span><span class="p">(</span><span class="n">hiscore</span><span class="o">.</span><span class="n">read_highscore</span><span class="p">())</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;------------------------------------------------&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">hiscore_list</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;------------------------------------------------&quot;</span><span class="p">)</span>
+
+</pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+</div>
+</body>

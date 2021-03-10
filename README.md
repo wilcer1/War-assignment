@@ -9,7 +9,7 @@ If you only wants to play the game, follow this step:
 Bofore running the game install playsound by writing "pip install playsound" in the directory where the game is placed.
 
 If you want to play the game and make tests on our program, follow this step:
-To install everything you need, write "pip install requirements.txt" in the directory where the game is placed.
+To install everything you need, write "pip install -r requirements.txt" in the directory where the game is placed.
 
 # How to run the game
 This is an alternative way to run the program!
@@ -27,3 +27,15 @@ Command "change_name" makes it posible to change your name whenever you want
 Command "help" and "?" shows the command list
 Command "highscore" views the highscore list
 Command "start" deal the deck
+
+# How to make tests and documentation
+If you want to run a test file 
+1. Be sure you are in the right directory 
+2. Then use "coverage run -m unittest discover . "filenameYouWantToTest_test.py""
+
+If you run the command "make test" it first looks at flake8 then pylint.
+
+If you run the command "make coverage" It will check test on everything.
+
+1. To generate a documentation of the code install pycco with this command "pip install pycco"
+2. Then use this command "pycco *.py" to generate the documentation!
