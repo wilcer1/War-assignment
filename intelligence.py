@@ -3,7 +3,7 @@
 from playsound import playsound
 
 WIN = "You are pro!"
-LOSE = "Better luck next time, human trash. AI will prevail! "
+LOSE = "Better luck next time, human trash. AI will prevail!"
 START = "Good luck have fun!"
 WAR = "This is a war!"
 MATCH_POINT = " has few cards remaining"
@@ -111,7 +111,8 @@ class Intelligence:
 
     @classmethod
     def win(cls, player):
-        """win function."""
+        """Win function."""
         print("------------------------------------------------")
-        print(f"{player.name} wins the game!\nType 'Restart' to restart the game")
+        print(f"{player.name} wins the game!")
+        print("Type 'Restart' to restart the game")
         playsound("win.mp3")
