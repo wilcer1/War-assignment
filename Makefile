@@ -1,6 +1,9 @@
 #!/usr/bin/env make
 
+# Change this to be your variant of the python command
+#PYTHON = python3
 PYTHON = python
+#PYTHON = py
 
 .PHONY: pydoc
 
@@ -11,9 +14,9 @@ venv:
 	@printf "Now activate the Python virtual environment.\n"
 	@printf "On Unix and Mac, do:\n"
 	@printf ". .venv/bin/activate\n"
-	@printf "On Windows, do:\n"
+	@printf "On Windows (bash terminal), do:\n"
 	@printf ". .venv/Scripts/activate\n"
-	@printf "Type 'deactivate' to deactivate."
+	@printf "Type 'deactivate' to deactivate.\n"
 
 install:
 	$(PYTHON) -m pip install -r requirements.txt
@@ -48,18 +51,18 @@ flake8:
 
 pydoc:
 	install -d doc/pydoc
-	pydoc -w $(PWD)
+	$(PYTHON) -m pydoc -w "$(PWD)"
 	mv *.html doc/pydoc
 
 pdoc:
 	rm -rf doc/pdoc
 	pdoc --html -o doc/pdoc .
 
-doc: pdoc #pydoc sphinx
+doc: pdoc pyreverse #pydoc sphinx
 
 pyreverse:
 	install -d doc/pyreverse
-	pyreverse $(PWD)
+	pyreverse *.py
 	dot -Tpng classes.dot -o doc/pyreverse/classes.png
 	dot -Tpng packages.dot -o doc/pyreverse/packages.png
 	rm -f classes.dot packages.dot

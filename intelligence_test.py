@@ -1,11 +1,11 @@
-"""Test self.intelligence class."""
+"""Test intelligence class."""
 
 import unittest
 import intelligence
 
 
 class TestIntelligenceClass(unittest.TestCase):
-    """Test self.intelligence class."""
+    """Test intelligence class."""
 
     def setUp(self):
         """Set up."""
