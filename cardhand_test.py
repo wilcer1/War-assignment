@@ -10,7 +10,7 @@ import deck
 import card
 
 
-class TestDiceClass(unittest.TestCase):
+class TestCardhandClass(unittest.TestCase):
     """Testing cardhand class."""
 
     def setUp(self):

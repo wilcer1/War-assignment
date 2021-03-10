@@ -8,7 +8,7 @@ import deck
 import card
 
 
-class TestGameClass(unittest.TestCase):
+class TestDeckClass(unittest.TestCase):
     """Test deck class."""
 
     def setUp(self):
