@@ -7,9 +7,6 @@ import intelligence
 class TestIntelligenceClass(unittest.TestCase):
     """Test intelligence class."""
 
-    def setUp(self):
-        """Set up."""
-
     def test_win(self):
         """Test win function."""
         self.assertEqual(intelligence.WIN, "You are pro!")
