@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module game</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>game</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:c%3A%5Cusers%5Cwille%5Cdocuments%5Cgithub%5Cwar-assignment%5Cgame.py">c:\users\wille\documents\github\war-assignment\game.py</a></font></td></tr></table>
+    <p><tt><a href="#Game">Game</a>&nbsp;class&nbsp;with&nbsp;logic.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="deck.html">deck</a><br>
+<a href="highscore.html">highscore</a><br>
+</td><td width="25%" valign=top><a href="intelligence.html">intelligence</a><br>
+<a href="player.html">player</a><br>
+</td><td width="25%" valign=top><a href="random.html">random</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="builtins.html#object">builtins.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="game.html#Game">Game</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Game">class <strong>Game</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Handle&nbsp;all&nbsp;the&nbsp;logic&nbsp;and&nbsp;get&nbsp;called&nbsp;by&nbsp;shell.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Game-__init__"><strong>__init__</strong></a>(self)</dt><dd><tt>Instantiate&nbsp;deck&nbsp;instance.</tt></dd></dl>
+
+<dl><dt><a name="Game-add_to_hiscore"><strong>add_to_hiscore</strong></a>(self, player_name)</dt><dd><tt>Add&nbsp;result&nbsp;to&nbsp;highscore&nbsp;txt.</tt></dd></dl>
+
+<dl><dt><a name="Game-check_cards"><strong>check_cards</strong></a>(self)</dt><dd><tt>Check&nbsp;if&nbsp;players&nbsp;have&nbsp;less&nbsp;than&nbsp;or&nbsp;4&nbsp;cards.</tt></dd></dl>
+
+<dl><dt><a name="Game-check_for_winner"><strong>check_for_winner</strong></a>(self)</dt><dd><tt>Check&nbsp;if&nbsp;anyone&nbsp;won.</tt></dd></dl>
+
+<dl><dt><a name="Game-draw"><strong>draw</strong></a>(self)</dt><dd><tt>Draw&nbsp;cards&nbsp;and&nbsp;return&nbsp;them.</tt></dd></dl>
+
+<dl><dt><a name="Game-get_players"><strong>get_players</strong></a>(self)</dt><dd><tt>Return&nbsp;all&nbsp;players&nbsp;created.</tt></dd></dl>
+
+<dl><dt><a name="Game-round_winner"><strong>round_winner</strong></a>(self, card1, card2)</dt><dd><tt>Give&nbsp;cards&nbsp;to&nbsp;winner,&nbsp;if&nbsp;equal&nbsp;call&nbsp;war,&nbsp;return&nbsp;string.</tt></dd></dl>
+
+<dl><dt><a name="Game-set_player"><strong>set_player</strong></a>(self, playernum, name)</dt><dd><tt>Create&nbsp;a&nbsp;player.</tt></dd></dl>
+
+<dl><dt><a name="Game-start"><strong>start</strong></a>(self)</dt><dd><tt>Create,&nbsp;shuffle&nbsp;and&nbsp;deal&nbsp;deck&nbsp;evenly.</tt></dd></dl>
+
+<dl><dt><a name="Game-war"><strong>war</strong></a>(self, winner_cards)</dt><dd><tt>War&nbsp;function.</tt></dd></dl>
+
+<hr>
+Class methods defined here:<br>
+<dl><dt><a name="Game-set_player_name"><strong>set_player_name</strong></a>(new_name, gamer)<font color="#909090"><font face="helvetica, arial"> from <a href="builtins.html#type">builtins.type</a></font></font></dt><dd><tt>Change&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;player.</tt></dd></dl>
+
+<dl><dt><a name="Game-show_hiscore"><strong>show_hiscore</strong></a>()<font color="#909090"><font face="helvetica, arial"> from <a href="builtins.html#type">builtins.type</a></font></font></dt><dd><tt>Print&nbsp;highscore&nbsp;list.</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table></td></tr></table>
+</body></html>
