@@ -27,7 +27,7 @@ Command "q", "EOF", "quit" and "exit" stops the program<br/>
 Command "change_name" makes it posible to change your name whenever you want<br/>
 Command "help" and "?" shows the command list<br/>
 Command "highscore" views the highscore list<br/>
-Command "start" deal the deck<br/>
+Command "start" deals the deck<br/>
 
 # How to make tests and documentation
 If you want to run test on a file
