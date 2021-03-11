@@ -21,7 +21,7 @@ This is an alternative way to run the program!
 6. There after write draw untill you either win or lose
 
 # Useful commands
-Command "autodraw" runs the hole game until a winner is set
+Command "autodraw" runs the whole game until a winner is set
 Command "q" "EOF" "quit" and "exit" stops the program
 Command "change_name" makes it posible to change your name whenever you want
 Command "help" and "?" shows the command list
