@@ -20,7 +20,7 @@ This is an alternative way to run the program!
 5. Write "start" to deal the deck and start the game
 6. There after write draw untill you either win or lose
 
-# Useful commands
+# Useful commands for game
 Command "autodraw" runs the whole game until a winner is set
 Command "q" "EOF" "quit" and "exit" stops the program
 Command "change_name" makes it posible to change your name whenever you want
