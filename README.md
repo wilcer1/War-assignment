@@ -10,7 +10,7 @@ Before running the game install playsound by writing "pip install playsound" in 
 
 If you want to play the game and make tests on our program, follow this step:
 To install everything you need, (use gitbash) and write "pip install -r requirements.txt" in the directory where the game is placed.
-You can also write make install, it will do the same thing.
+You can also write "make install", it will do the same thing.
 
 # How to run the game
 This is an alternative way to run the program!
@@ -19,10 +19,10 @@ This is an alternative way to run the program!
 3. Write "player" and choose between 1 or 2 players by typing "1" or "2"
 4. Enter the name for your player
 5. Write "start" to deal the deck and start the game
-6. There after write draw untill you either win or lose
+6. Then write draw until you either win or lose
 
 # Useful commands for game
-Command "autodraw" runs the whole game until a winner is set
+Command "autodraw" runs the whole game until a winner is set (cheat)
 Command "q" "EOF" "quit" and "exit" stops the program
 Command "change_name" makes it posible to change your name whenever you want
 Command "help" and "?" shows the command list
