@@ -31,7 +31,7 @@ Command "highscore" views the highscore list<br/>
 Command "start" deals the deck<br/>
 
 # How to make tests and documentation
-## If you want to run test on a file
+## If you want to run tests
 1. Be sure you are in the right directory 
 2. Then use "coverage run -m unittest discover . "filenameYouWantToTest.py""
 3. To get the coverage report write "coverage -m report"
@@ -40,5 +40,15 @@ If you want to run test on all files without linters you can use the command "ma
 If you want to run test on all files and linters you can use the command "make test"<br/>
 If you want to test linters on all files you can use the command "make lint"<br/>
 
+## If you want to get documentation
+
+To generate uml diagrams use the command "make pyreverse"<br/>
+the diagrams generated can be found in doc/pyreverse<br/>
+
 1. To generate a documentation of the code install pycco with this command "pip install pycco"
 2. Then use this command "pycco *.py" to generate the documentation!
+
+To get documentation you can also use the command "make pdoc"<br/>
+the generated documents can be found in doc/pydoc<br/>
+
+If you want to generate both pydoc and uml you can use the command "make doc"
