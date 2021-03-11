@@ -9,7 +9,7 @@ If you only wants to play the game, follow this step:
 Before running the game install playsound by writing "pip install playsound" in the directory where the game is placed.
 
 If you want to play the game and make tests on our program, follow this step:
-To install everything you need, write "pip install -r requirements.txt" in the directory where the game is placed.
+To install everything you need, (use gitbash) and write "pip install -r requirements.txt" in the directory where the game is placed.
 
 # How to run the game
 This is an alternative way to run the program!
