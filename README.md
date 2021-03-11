@@ -8,9 +8,9 @@ This game is developed by Lucas Carlsson, Timmy Bergvall and Wille Cervin.
 ## If you only want to play the game, follow this step:
 Before running the game install playsound by writing "pip install playsound" in the directory where the game is placed.
 
-If you want to play the game and make tests on our program, follow this step:
-To install everything you need, (use gitbash) and write "pip install -r requirements.txt" in the directory where the game is placed.
-You can also write "make install", it will do the same thing.
+If you want to play the game and make tests on our program, follow this step:<br/>
+To install everything you need, (use gitbash) and write "pip install -r requirements.txt" in the directory where the game is placed.<br/>
+You can also write "make install", it will do the same thing.<br/>
 
 # How to run the game
 ## This is an alternative way to run the program!
@@ -35,9 +35,9 @@ Command "start" deals the deck<br/>
 2. Then use "coverage run -m unittest discover . "filenameYouWantToTest.py""
 3. To get the coverage report write "coverage -m report"
 
-If you want to run test on all files without linters you can use the command "make coverage"
-If you want to run test on all files and linters you can use the command "make test"
-If you want to test linters on all files you can use the command "make lint"
+If you want to run test on all files without linters you can use the command "make coverage"<br/>
+If you want to run test on all files and linters you can use the command "make test"<br/>
+If you want to test linters on all files you can use the command "make lint"<br/>
 
 1. To generate a documentation of the code install pycco with this command "pip install pycco"
 2. Then use this command "pycco *.py" to generate the documentation!
