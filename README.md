@@ -10,7 +10,7 @@ This game is developed by Lucas Carlsson, Timmy Bergvall and Wille Cervin.
 Before running the game install playsound by writing "pip install playsound" in the directory where the game is placed.
 
 If you want to play the game and make tests on our program, follow this step:<br/>
-To install everything you need, (use gitbash) and write "pip install -r requirements.txt" in the directory where the game is placed.<br/>
+To install everything you need, and write "pip install -r requirements.txt" in the directory where the game is placed.<br/>
 You can also write "make install", it will do the same thing.<br/>
 
 # How to run the game
