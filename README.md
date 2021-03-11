@@ -5,11 +5,12 @@ A02 Sustainable programming
 This game is developed by Lucas Carlsson, Timmy Bergvall and Wille Cervin.
 
 # Before playing the game!
+*Use Git Bash for these commands*
 If you only want to play the game, follow this step:
 Before running the game install playsound by writing "pip install playsound" in the directory where the game is placed.
 
 If you want to play the game and make tests on our program, follow this step:
-To install everything you need, (use gitbash) and write "pip install -r requirements.txt" in the directory where the game is placed.
+To install everything you need, and write "pip install -r requirements.txt" in the directory where the game is placed.
 You can also write "make install", it will do the same thing.
 
 # How to run the game
