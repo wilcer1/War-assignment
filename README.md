@@ -23,7 +23,7 @@ This is an alternative way to run the program!
 
 # Useful commands for game
 Command "autodraw" runs the whole game until a winner is set (cheat)<br/>
-Command "q" "EOF" "quit" and "exit" stops the program<br/>
+Command "q", "EOF", "quit" and "exit" stops the program<br/>
 Command "change_name" makes it posible to change your name whenever you want<br/>
 Command "help" and "?" shows the command list<br/>
 Command "highscore" views the highscore list<br/>
