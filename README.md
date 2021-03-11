@@ -22,12 +22,12 @@ This is an alternative way to run the program!
 6. Then write draw until you either win or lose
 
 # Useful commands for game
-Command "autodraw" runs the whole game until a winner is set (cheat)
-Command "q" "EOF" "quit" and "exit" stops the program
-Command "change_name" makes it posible to change your name whenever you want
-Command "help" and "?" shows the command list
-Command "highscore" views the highscore list
-Command "start" deal the deck
+Command "autodraw" runs the whole game until a winner is set (cheat)<br/>
+Command "q" "EOF" "quit" and "exit" stops the program<br/>
+Command "change_name" makes it posible to change your name whenever you want<br/>
+Command "help" and "?" shows the command list<br/>
+Command "highscore" views the highscore list<br/>
+Command "start" deal the deck<br/>
 
 # How to make tests and documentation
 If you want to run test on a file
