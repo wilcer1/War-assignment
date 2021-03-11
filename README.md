@@ -45,10 +45,11 @@ If you want to test linters on all files you can use the command "make lint"<br/
 To generate uml diagrams use the command "make pyreverse"<br/>
 the diagrams generated can be found in doc/pyreverse<br/>
 
-1. To generate a documentation of the code install pycco with this command "pip install pycco"
-2. Then use this command "pycco *.py" to generate the documentation!
-
-To get documentation you can also use the command "make pdoc"<br/>
+To get documentation you can use the command "make pdoc"<br/>
 the generated documents can be found in doc/pydoc<br/>
 
-If you want to generate both pydoc and uml you can use the command "make doc"
+If you want to generate both pydoc and uml you can use the command "make doc"<br/>
+
+If the above method for generating documentation doesnt work you can use this method:<br/>
+1. Install pycco with this command "pip install pycco"
+2. Then use this command "pycco *.py" to generate the documentation!
