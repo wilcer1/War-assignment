@@ -52,4 +52,5 @@ If you want to generate both pydoc and uml you can use the command "make doc"<br
 
 If the above method for generating documentation doesnt work you can use this method:<br/>
 1. Install pycco with this command "pip install pycco"
-2. Then use this command "pycco *.py" to generate the documentation!
+2. Then use this command "pycco *.py" to generate the documentation.
+the generated documents can be found in docs<br/>
