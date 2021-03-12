@@ -5,11 +5,12 @@ A02 Sustainable programming
 This game is developed by Lucas Carlsson, Timmy Bergvall and Wille Cervin.
 
 # Before playing the game!
+*Use Git Bash for these commands*
 ## If you only want to play the game, follow this step:
 Before running the game install playsound by writing "pip install playsound" in the directory where the game is placed.
 
 If you want to play the game and make tests on our program, follow this step:<br/>
-To install everything you need, (use gitbash) and write "pip install -r requirements.txt" in the directory where the game is placed.<br/>
+To install everything you need, and write "pip install -r requirements.txt" in the directory where the game is placed.<br/>
 You can also write "make install", it will do the same thing.<br/>
 
 # How to run the game
@@ -30,7 +31,7 @@ Command "highscore" views the highscore list<br/>
 Command "start" deals the deck<br/>
 
 # How to make tests and documentation
-## If you want to run test on a file
+## If you want to run tests
 1. Be sure you are in the right directory 
 2. Then use "coverage run -m unittest discover . "filenameYouWantToTest.py""
 3. To get the coverage report write "coverage -m report"
@@ -39,5 +40,17 @@ If you want to run test on all files without linters you can use the command "ma
 If you want to run test on all files and linters you can use the command "make test"<br/>
 If you want to test linters on all files you can use the command "make lint"<br/>
 
-1. To generate a documentation of the code install pycco with this command "pip install pycco"
-2. Then use this command "pycco *.py" to generate the documentation!
+## If you want to get documentation
+
+To generate uml diagrams use the command "make pyreverse"<br/>
+the diagrams generated can be found in doc/pyreverse<br/>
+
+To get documentation you can use the command "make pdoc"<br/>
+the generated documents can be found in doc/pydoc<br/>
+
+If you want to generate both pydoc and uml you can use the command "make doc"<br/>
+
+If the above method for generating documentation doesnt work you can use this method:<br/>
+1. Install pycco with this command "pip install pycco"
+2. Then use this command "pycco *.py" to generate the documentation.
+the generated documents can be found in docs<br/>
