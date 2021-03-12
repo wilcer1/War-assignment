@@ -48,3 +48,6 @@ Revamped intelligence to handle most of the output in the application.
 Added sound effects to the application.
 Fixed multiple bugs.
 Game fully functional with no known bugs.
+
+### Release 2.2.1 (12/3 2021):
+Fixed a bug for autodraw.
