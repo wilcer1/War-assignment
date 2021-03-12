@@ -1,5 +1,9 @@
 # War assignment
-A02 Sustainable programming
+## A02 Sustainable programming
+You can run this game against a computer or against your friend, by choosing 1 or 2 players.
+This war game is based on cards where the one with 0 cards loses.
+We implemented Intelligence by using the class to handle almost all of the outputs.
+The game also has unique outputs when playing agains the computer.
 
 # Developers
 This game is developed by Lucas Carlsson, Timmy Bergvall and Wille Cervin.
