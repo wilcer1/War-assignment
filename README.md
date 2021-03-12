@@ -32,12 +32,14 @@ Command "start" deals the deck<br/>
 
 # How to make tests and documentation
 ## If you want to run tests
+This is how you can run tests without makefile:<br/>
 1. Be sure you are in the right directory 
 2. Then use "coverage run -m unittest discover . "filenameYouWantToTest.py""
 3. To get the coverage report write "coverage -m report"
 
-If you want to run test on all files without linters you can use the command "make coverage"<br/>
-If you want to run test on all files and linters you can use the command "make test"<br/>
+If you want to run test on all files excluding linters you can use the command "make unittest"<br/>
+If you want to run test on all files including linters you can use the command "make test"<br/>
+If you want to run test on all files excluding linters and get coverage report you can use the command "make coverage"<br/>
 If you want to test linters on all files you can use the command "make lint"<br/>
 
 ## If you want to get documentation
