@@ -100,6 +100,7 @@ class Shell(cmd.Cmd):
         """Draw until end."""
         if not self.game.started:
             print("You need to start the game first, type 'start'")
+            self.game.winner = None
         else:
             while not self.game.check_for_winner():
                 self.do_draw("draw")
