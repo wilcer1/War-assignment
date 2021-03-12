@@ -183,6 +183,7 @@ class Game():
                 return True
         else:
             print("Game already over, type 'restart' to redeal the deck")
+            self.winner = None
             return False
 
     def add_to_hiscore(self, player_name):
