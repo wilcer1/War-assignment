@@ -68,21 +68,6 @@ pyreverse:
 	rm -f classes.dot packages.dot
 	ls -l doc/pyreverse
 
-radon-cc:
-	radon cc . -a
-
-radon-mi:
-	radon mi .
-
-radon-raw:
-	radon raw .
-
-radon-hal:
-	radon hal .
-
-bandit:
-	bandit -r .
-
 lint: flake8 pylint
 
 test: lint coverage
