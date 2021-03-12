@@ -5,6 +5,8 @@ import os
 class Highscore:
     """Highscore Class."""
 
+    # Make highscore_list an attribute??
+
     def __init__(self, path):
         """Set path to highscore_file."""
         self.path = path
@@ -14,12 +16,12 @@ class Highscore:
 
     @classmethod
     def sort_highscore(cls, highscore_list):
-        """Sort highscore_list."""
+        """Sort highscore_list, and return it."""
         sorted_highscore_list = sorted(highscore_list)
         return sorted_highscore_list
 
     def write_to_highscore(self, highscore_list):
-        """Write highscore_list to highscore file."""
+        """Write to highscore file.."""
         self.sort_highscore(highscore_list)
         with open(self.path, "w") as text_file:
             for score, name in highscore_list:
@@ -47,7 +49,7 @@ class Highscore:
 
     @classmethod
     def show_highscore(cls, highscore_list):
-        """Format Strings in highscore_list and return new list."""
+        """Return highscore list."""
         show_list = []
         for count, (score, name) in enumerate(highscore_list, 1):
             if count <= 20:
