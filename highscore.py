@@ -16,7 +16,7 @@ class Highscore:
 
     @classmethod
     def sort_highscore(cls, highscore_list):
-        """Sort highscore_list."""
+        """Sort highscore_list, and return it."""
         sorted_highscore_list = sorted(highscore_list)
         return sorted_highscore_list
 
@@ -49,7 +49,7 @@ class Highscore:
 
     @classmethod
     def show_highscore(cls, highscore_list):
-        """Show highscore."""
+        """Return highscore list."""
         show_list = []
         for count, (score, name) in enumerate(highscore_list, 1):
             if count <= 20:

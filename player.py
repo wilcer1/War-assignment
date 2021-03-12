@@ -16,5 +16,5 @@ class Player:
         self.name = name
 
     def get_name(self):
-        """Get player name."""
+        """Return player name."""
         return self.name

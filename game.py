@@ -156,14 +156,14 @@ class Game():
               + f"{self.player2.cardhand.cards_remaining()}")
 
     def check_cards(self):
-        """Check if players have less than or 4 cards."""
+        """Check if players have less than or 4 cards, return Bool."""
         if self.player1.cardhand.cards_remaining() <= 4 or\
                 self.player2.cardhand.cards_remaining() <= 4:
             return True
         return False
 
     def check_for_winner(self):
-        """Check if anyone won."""
+        """Check if anyone won, return Bool."""
         if self.winner is None:
             if self.player1.cardhand.cards_remaining() == 0:
                 self.intelligence.win(self.player2)

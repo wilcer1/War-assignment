@@ -30,7 +30,7 @@ class Deck:
         random.shuffle(self.deck)
 
     def deal_deck(self):
-        """Distribute deck evenly."""
+        """Distribute deck evenly, return 2 lists of cards."""
         player1 = []
         player2 = []
         for _i in range(0, int(len(self.deck)/2)):
