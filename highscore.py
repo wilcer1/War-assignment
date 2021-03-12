@@ -21,7 +21,7 @@ class Highscore:
         return sorted_highscore_list
 
     def write_to_highscore(self, highscore_list):
-        """Write to highscore file.."""
+        """Write to highscore file."""
         self.sort_highscore(highscore_list)
         with open(self.path, "w") as text_file:
             for score, name in highscore_list:
